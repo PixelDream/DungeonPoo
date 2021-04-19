@@ -1,3 +1,5 @@
+import model.Game;
+import model.Player;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
@@ -10,6 +12,10 @@ public class Main {
 
     public static void main(String[] args) {
         initWeapon();
+
+        Player player = new Player("John", 100);
+        Game game = new Game(player);
+
         System.out.println("Hello World!");
     }
 

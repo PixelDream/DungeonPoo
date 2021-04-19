@@ -6,6 +6,8 @@ public class Door {
     private Direction direction;
     private Key key;
 
+    //TODO: Des rooms ?
+
     public Door() {
 
     }
