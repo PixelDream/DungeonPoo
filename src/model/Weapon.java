@@ -5,6 +5,7 @@ public class Weapon extends Equipment {
     private String name;
     private String type;
     private int damage;
+    private double rarety;
 
     public Weapon(String name, String type, int damage) {
         this.name = name;

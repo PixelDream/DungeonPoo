@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE weapons [
+        <!ELEMENT weapons (weapon)*>
+        <!ELEMENT weapon (name, type, damage)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT type (#PCDATA)>
+        <!ELEMENT damage (#PCDATA)>
+]>
+
+<weapons>
+    <weapon>
+        <name>Armagedon</name>
+        <type>Epee</type>
+        <damage>12</damage>
+    </weapon>
+    <weapon>
+        <name>Arc lance flamme</name>
+        <type>Arc</type>
+        <damage>7</damage>
+    </weapon>
+    <weapon>
+        <name>Acide sulfurique</name>
+        <type>Poison</type>
+        <damage>9</damage>
+    </weapon>
+    <weapon>
+        <name>Eau bouillante</name>
+        <type>Poison</type>
+        <damage>2</damage>
+    </weapon>
+</weapons>

@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
 
     private String position;
@@ -7,7 +10,7 @@ public class Player {
     private String username;
     private int lifePoint;
     private String attack;
-    private Equipment stuff[];
+    private List<Equipment> stuff;
 
     public Player(String position, String direction, String username, int lifePoint, String attack) {
         this.position = position;
@@ -15,6 +18,7 @@ public class Player {
         this.username = username;
         this.lifePoint = lifePoint;
         this.attack = attack;
+        stuff = new ArrayList<>();
     }
 
     public void move(){
