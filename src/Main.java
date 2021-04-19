@@ -24,8 +24,8 @@ public class Main {
         }
         racine = document.getRootElement();
 
-        List listEtudiants = racine.getChildren("weapon");
-        Iterator i = listEtudiants.iterator();
+        List listWeapon = racine.getChildren("weapon");
+        Iterator i = listWeapon.iterator();
         while(i.hasNext()) {
             Element courant = (Element)i.next();
             System.out.println(courant.getChild("name").getText());
