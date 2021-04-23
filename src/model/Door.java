@@ -1,15 +1,17 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Door {
 
     private boolean open;
     private Direction direction;
     private Key key;
-
-    //TODO: Des rooms ?
+    private List<Room> rooms;
 
     public Door() {
-
+        rooms = new ArrayList<>();
     }
 
     public boolean isOpen() {
