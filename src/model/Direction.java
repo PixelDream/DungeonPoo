@@ -1,5 +1,7 @@
 package model;
 
-public enum Direction {
+import java.io.Serializable;
+
+public enum Direction implements Serializable {
     WEST, EAST, NORTH, SOUTH;
 }

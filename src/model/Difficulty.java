@@ -1,6 +1,8 @@
 package model;
 
-public enum Difficulty {
+import java.io.Serializable;
+
+public enum Difficulty implements Serializable {
 
     EASY(20, 0.8, 0.3, 0.3),
     NORMAL(35, 0.65, 0.45, 0.4),

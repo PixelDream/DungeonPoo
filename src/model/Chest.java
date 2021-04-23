@@ -1,6 +1,8 @@
 package model;
 
-public class Chest {
+import java.io.Serializable;
+
+public class Chest implements Serializable {
 
     public Chest() {
 

@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Enemy {
+public class Enemy implements Serializable {
 
     private String name;
     private Attack attack;

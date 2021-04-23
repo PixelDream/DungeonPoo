@@ -1,9 +1,12 @@
 package model;
 
+import utils.FileManager;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game {
+public class Game implements Serializable {
     private int gameNumber;
     private int score;
     private boolean gameSucceed;
@@ -11,6 +14,7 @@ public class Game {
     private Room room;
     private Difficulty difficulty;
     private List<Room> roomList = new ArrayList<>();
+    private FileManager fm = new FileManager("DungeonPoo");
 
     public Game(Player player, Difficulty difficulty){
         this.player = player;
@@ -30,11 +34,11 @@ public class Game {
     }
 
     public void saveGame(){
-
+        fm.saveObject(this, "game-saved.bin");
     }
 
     public void openGame(){
-
+        //TODO : fm.openSavedObject("game-saved.bin");
     }
 
     private void generateDungeon() {
