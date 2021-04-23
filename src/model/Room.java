@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Room {
 
-    private double wifth;
+    private double width;
     private double height;
     private List<Door> doors;
     private Chest chest;

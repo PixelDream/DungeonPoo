@@ -6,18 +6,14 @@ import java.util.List;
 public class Player {
 
     private String position;
-    private String direction;
+    private Direction direction;
     private String username;
     private int lifePoint;
-    private String attack;
     private List<Equipment> stuff;
 
-    public Player(String position, String direction, String username, int lifePoint, String attack) {
-        this.position = position;
-        this.direction = direction;
+    public Player(String username, int lifePoint) {
         this.username = username;
         this.lifePoint = lifePoint;
-        this.attack = attack;
         stuff = new ArrayList<>();
     }
 
