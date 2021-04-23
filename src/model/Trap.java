@@ -1,6 +1,8 @@
 package model;
 
-public class Trap {
+import java.io.Serializable;
+
+public class Trap implements Serializable {
 
     private Direction direction;
     private double damage;

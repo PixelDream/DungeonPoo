@@ -1,6 +1,8 @@
 package model;
 
-public class Key extends Equipment {
+import java.io.Serializable;
+
+public class Key extends Equipment implements Serializable {
 
 
 
