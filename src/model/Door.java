@@ -12,6 +12,7 @@ public class Door {
 
     public Door() {
         rooms = new ArrayList<>();
+        this.key = new Key();
     }
 
     public boolean isOpen() {
@@ -20,5 +21,9 @@ public class Door {
 
     public void setOpen(Key key) {
         this.open = this.key.equals(key);
+    }
+
+    public void addRoom(Room room) {
+        rooms.add(room);
     }
 }

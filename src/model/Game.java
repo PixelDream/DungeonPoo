@@ -11,6 +11,7 @@ public class Game {
     private Room room;
     private Difficulty difficulty;
     private List<Room> roomList = new ArrayList<>();
+    private List<Key> keysList;
 
     public Game(Player player, Difficulty difficulty){
         this.player = player;
@@ -38,12 +39,24 @@ public class Game {
     }
 
     private void generateDungeon() {
-        for (int i = 0; i < 20; i++) {
+        int NumberRoom = difficulty.getNumberRoom();
+        double luckEnemy = difficulty.getLuckChest();
+        double LuckTrap = difficulty.getLuckTrap();
+        double LuckEnemy = difficulty.getLuckEnemy();
+
+        for (int i = 0; i < NumberRoom; i++) {
             Room room = new Room();
-            for (int j = 0; j < 2; j++) {
-                //TODO: generation des portes
+
+            for (int j = 0; j < random(1, 3); j++) {
+                Door door = new Door();
+                room.addDoor(door);
             }
+
             roomList.add(room);
         }
+    }
+
+    public int random(int min, int max) {
+        return min + (int) (Math.random() * ((max - min) + 1));
     }
 }
