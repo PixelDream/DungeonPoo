@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
     private int gameNumber;
     private int score;
@@ -7,6 +10,7 @@ public class Game {
     private Player player;
     private Room room;
     private Difficulty difficulty;
+    private List<Room> roomList = new ArrayList<>();
 
     public Game(Player player, Difficulty difficulty){
         this.player = player;
@@ -35,7 +39,11 @@ public class Game {
 
     private void generateDungeon() {
         for (int i = 0; i < 20; i++) {
-
+            Room room = new Room();
+            for (int j = 0; j < 2; j++) {
+                //TODO: generation des portes
+            }
+            roomList.add(room);
         }
     }
 }

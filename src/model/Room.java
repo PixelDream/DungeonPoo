@@ -14,4 +14,8 @@ public class Room {
     public Room() {
         doors = new ArrayList<>();
     }
+
+    public void addDoor(Door d){
+        doors.add(d);
+    }
 }
