@@ -1,3 +1,4 @@
+import model.Difficulty;
 import model.Game;
 import model.Player;
 import org.jdom2.Document;
@@ -14,7 +15,9 @@ public class Main {
         initWeapon();
 
         Player player = new Player("John", 100);
-        Game game = new Game(player);
+        Game game = new Game(player, Difficulty.DIFFICULT);
+
+        game.launchGame();
 
         System.out.println("Hello World!");
     }

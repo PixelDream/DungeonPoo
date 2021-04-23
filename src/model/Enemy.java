@@ -22,4 +22,5 @@ public class Enemy {
     public Attack getAttack() {
         return attack;
     }
+
 }
