@@ -7,10 +7,11 @@ public class Weapon extends Equipment {
     private int damage;
     private double rarety;
 
-    public Weapon(String name, String type, int damage) {
+    public Weapon(String name, String type, int damage, double rarety) {
         this.name = name;
         this.type = type;
         this.damage = damage;
+        this.rarety = rarety;
     }
 
     public String getName() {
@@ -23,5 +24,9 @@ public class Weapon extends Equipment {
 
     public int getDamage() {
         return damage;
+    }
+
+    public double getRarety() {
+        return rarety;
     }
 }
