@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE attacks [
+        <!ELEMENT attacks (attack)*>
+        <!ELEMENT attack (name, damage, luck)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT damage (#PCDATA)>
+        <!ELEMENT luck (#PCDATA)>
+        ]>
+
+<attacks>
+    <attack>
+        <name>Attaque éclaire !</name>
+        <damage>12</damage>
+        <luck>0.18</luck>
+    </attack>
+    <attack>
+        <name>Gros coup de pied dans le tibia</name>
+        <damage>7</damage>
+        <luck>0.34</luck>
+    </attack>
+</attacks>

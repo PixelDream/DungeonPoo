@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Player implements Serializable {
 
-    private String position;
+    private Room position;
     private Direction direction;
     private String username;
     private int lifePoint;

@@ -1,5 +1,6 @@
 package utils;
 
+import model.Attack;
 import model.Weapon;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -16,6 +17,7 @@ public class FileManager implements Serializable {
 
     final private String dataFolder = System.getProperty("user.home") + "\\Local Settings\\Application Data\\";
     public List<Weapon> weaponsList;
+    public List<Attack> attacksList;
     private String name_app = "DungeonPoo";
     final public String path = dataFolder + name_app;
 
@@ -25,6 +27,10 @@ public class FileManager implements Serializable {
 
         writeFolderAppData();
         initWeapon();
+        initAttack();
+        for (Attack attack : attacksList) {
+            System.out.println(attack.getName());
+        }
     }
 
     public void writeFolderAppData() {
@@ -35,24 +41,41 @@ public class FileManager implements Serializable {
         }
     }
 
-    private void initWeapon() {
+    private Iterator getXml(String xmlPath, String objectName){
         Document document = null;
         Element racine;
         SAXBuilder sxb = new SAXBuilder();
         try {
-            document = sxb.build(new File("src/fixture/weapons.xml"));
+            document = sxb.build(new File(xmlPath));
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
         racine = document.getRootElement();
 
-        List list = racine.getChildren("weapon");
+        List list = racine.getChildren(objectName);
         Iterator i = list.iterator();
+        return i;
+    }
+
+    private void initWeapon() {
+
+        Iterator i = getXml("src/fixture/weapons.xml", "weapon");
 
         while(i.hasNext()) {
             Element el = (Element) i.next();
             Weapon weapon = new Weapon(el.getChild("name").getText(), el.getChild("type").getText(), Integer.parseInt(el.getChild("damage").getText()), Double.parseDouble(el.getChild("rarety").getText()));
             weaponsList.add(weapon);
+        }
+    }
+
+    private void initAttack() {
+
+        Iterator i = getXml("src/fixture/attacks.xml","attack");
+
+        while(i.hasNext()) {
+            Element el = (Element) i.next();
+            Attack attack = new Attack(el.getChild("name").getText(), Integer.parseInt(el.getChild("damage").getText()), Double.parseDouble(el.getChild("luck").getText()));
+            attacksList.add(attack);
         }
     }
 

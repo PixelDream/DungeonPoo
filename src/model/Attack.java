@@ -6,10 +6,12 @@ public class Attack implements Serializable {
 
     private String name;
     private double damage;
+    private double luck;
 
-    public Attack(String name, double damage) {
+    public Attack(String name, double damage, double luck) {
         this.name = name;
         this.damage = damage;
+        this.luck = luck;
     }
 
     public String getName() {
@@ -18,5 +20,9 @@ public class Attack implements Serializable {
 
     public double getDamage() {
         return damage;
+    }
+
+    public double getLuck() {
+        return luck;
     }
 }
