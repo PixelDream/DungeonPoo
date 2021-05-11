@@ -15,7 +15,7 @@ public class Game implements Serializable {
     private Difficulty difficulty;
     private List<Room> roomList = new ArrayList<>();
     private List<Key> keysList;
-    private FileManager fm = new FileManager("DungeonPoo");
+    private static FileManager fm = new FileManager("DungeonPoo");
 
     public Game(Player player, Difficulty difficulty) {
         this.player = player;
@@ -39,8 +39,7 @@ public class Game implements Serializable {
         fm.saveObject(this, "game-saved.bin");
     }
 
-    public Game openGame() {
-        //TODO : fm.openSavedObject("game-saved.bin");
+    public static Game openGame(){
         return (Game) fm.openSavedObject("game-saved.bin");
     }
 
@@ -136,6 +135,14 @@ public class Game implements Serializable {
             System.out.println();
         }
 
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public int random(int min, int max) {
