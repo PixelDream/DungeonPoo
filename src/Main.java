@@ -9,7 +9,7 @@ public class Main {
         new FileManager("DungeonPoo");
 
         Player player = new Player("John", 100);
-        Game game = new Game(player, Difficulty.DIFFICULT);
+        Game game = new Game(player, Difficulty.EASY);
 
         game.launchGame();
 
