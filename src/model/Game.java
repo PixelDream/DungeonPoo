@@ -32,14 +32,16 @@ public class Game implements Serializable {
         System.out.println("LuckTrap: " + difficulty.getLuckTrap());
         System.out.println("LuckEnemy: " + difficulty.getLuckEnemy());
         System.out.println("NumberRoom: " + difficulty.getNumberRoom());
+        System.out.println("NumberRoomMax: " + difficulty.getNumberRoomMax());
     }
 
     public void saveGame(){
         fm.saveObject(this, "game-saved.bin");
     }
 
-    public void openGame(){
+    public Game openGame(){
         //TODO : fm.openSavedObject("game-saved.bin");
+        return (Game) fm.openSavedObject("game-saved.bin");
     }
 
     private void generateDungeon() {

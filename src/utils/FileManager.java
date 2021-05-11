@@ -58,7 +58,6 @@ public class FileManager implements Serializable {
 
     public void saveObject(Object obj, String nomFichier) {
         try {
-
             FileOutputStream file = new FileOutputStream(path + "/" + nomFichier);
             ObjectOutputStream object = new ObjectOutputStream(file);
             object.writeObject(obj);
@@ -67,5 +66,12 @@ public class FileManager implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public Object openSavedObject(String nomFichier){
+
+
+
+        return null;
     }
 }
