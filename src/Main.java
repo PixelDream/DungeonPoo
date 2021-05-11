@@ -13,8 +13,6 @@ public class Main {
 
         game.launchGame();
 
-        game.saveGame();
-
         System.out.println("Hello World!");
     }
 }

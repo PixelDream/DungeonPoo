@@ -69,9 +69,15 @@ public class FileManager implements Serializable {
     }
 
     public Object openSavedObject(String nomFichier){
+        Object o = null;
+        try (ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(path + "/" + nomFichier))) {
+            o = objectInput.readObject();
+        } catch (EOFException eof) {
+            System.out.println("Fichier de sauvegarde vide.");
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
 
-
-
-        return null;
+        return o;
     }
 }
