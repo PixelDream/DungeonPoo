@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class FileManager {
+public class FileManager implements Serializable {
 
     final private String dataFolder = System.getProperty("user.home") + "\\Local Settings\\Application Data\\";
     public List<Weapon> weaponsList;

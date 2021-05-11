@@ -14,11 +14,8 @@ public class Game implements Serializable {
     private Room room;
     private Difficulty difficulty;
     private List<Room> roomList = new ArrayList<>();
-<<<<<<< HEAD
     private List<Key> keysList;
-=======
     private FileManager fm = new FileManager("DungeonPoo");
->>>>>>> d0fa22aa312b0d5fed34871fed2982b7d2c22aa1
 
     public Game(Player player, Difficulty difficulty){
         this.player = player;
