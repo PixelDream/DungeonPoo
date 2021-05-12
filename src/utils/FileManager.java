@@ -7,9 +7,11 @@ import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -42,18 +44,18 @@ public class FileManager implements Serializable {
         }
     }
 
-    private Iterator getXml(String xmlPath, String objectName){
+    private Iterator getXml(String xmlPath, String xmlObjectName){
         Document document = null;
         Element racine;
         SAXBuilder sxb = new SAXBuilder();
         try {
-            document = sxb.build(new File(xmlPath));
+            document = sxb.build(new InputStreamReader(new FileInputStream(xmlPath), StandardCharsets.UTF_8));
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
         racine = document.getRootElement();
 
-        List list = racine.getChildren(objectName);
+        List list = racine.getChildren(xmlObjectName);
         Iterator i = list.iterator();
         return i;
     }
@@ -75,6 +77,7 @@ public class FileManager implements Serializable {
 
         while(i.hasNext()) {
             Element el = (Element) i.next();
+            System.out.println(el.getChild("name"));
             Attack attack = new Attack(el.getChild("name").getText(), Integer.parseInt(el.getChild("damage").getText()), Double.parseDouble(el.getChild("luck").getText()));
             attacksList.add(attack);
         }

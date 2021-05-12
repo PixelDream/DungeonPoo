@@ -22,6 +22,10 @@ public class Player implements Serializable {
 
     }
 
+    public void fight(Enemy enemy){
+
+    }
+
     public void fleeTheFight(){
         // fuire un combat
     }
