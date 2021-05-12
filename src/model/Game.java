@@ -45,9 +45,9 @@ public class Game implements Serializable {
 
     private void generateDungeon() {
         int numberRoomMax = difficulty.getNumberRoomMax();
-        numberRoomMax = 9;
+        //numberRoomMax = 9;
         int numberRoom = difficulty.getNumberRoom();
-        numberRoom = 3;
+        //numberRoom = 6;
         double luckChest = difficulty.getLuckChest();
         double luckTrap = difficulty.getLuckTrap();
         double luckEnemy = difficulty.getLuckEnemy();
@@ -80,44 +80,56 @@ public class Game implements Serializable {
                 roomList[k++] = dungeon[i][j];
 
         // Generer les liens entre les salles avec la matrice
-        int[][] coords = new int[numberRoom][numberRoom];
-        System.out.println("Taille numberRoom: " + numberRoom);
-        for (int i = 0; i < numberRoom; i++) {
-            for (int j = 0; j < numberRoom; j++) {
-                System.out.println((roomList[i] == 1 && roomList[j] == 1 && i != j) + " ==> " + i + " et " + j + " ==> " + roomList[i] + " == " + 1 + " && " + roomList[j] + " == " + 1 + " && " + i + " != " + j);
-                if (roomList[i] == 1 && roomList[j] == 1 && i != j) {
-                    coords[i][j] = random(0, numberRoom);
-                    coords[j][i] = coords[i][j];
+        int[][] coords = new int[numberRoomMax][numberRoomMax];
+
+        // numberRoomMax = 9
+        int n = 0;
+        for (int i = 0; i < numberRoomMax; i++) { // ligne
+            int maxK = 0;
+            for (int j = 0; j < n; j++) { // colone
+                if (i != j) {
+                    if (roomList[i] == 1 && roomList[j] == 1) {
+                        if (maxK < 4) {
+                            coords[i][j] = random(0, numberRoomMax);
+                            coords[j][i] = coords[i][j];
+                            maxK++;
+                        } else {
+                            coords[i][j] = -1;
+                            coords[j][i] = coords[i][j];
+                        }
+                    } else {
+                        coords[i][j] = -1;
+                        coords[j][i] = coords[i][j];
+                    }
+                } else {
+                    coords[i][j] = -1;
                 }
+
             }
+            n++;
         }
 
         // Parcourir la matrice de liens et faire les rooms
         int numberRoomX2 = numberRoom * numberRoom;
-        int l = 0, m = 0, n = 0, acc = 0;
 
-        while (l < numberRoomX2) {
+        int acc = 0;
+        for (int i = 0; i < numberRoomX2; i++) {
+            for (int j = 0; j < numberRoom; j++) {
+                for (int l = 0; l < acc; l++) {
+                    Room room = new Room();
 
-            while (m < numberRoom) {
-                while (n < acc) {
-//                    Room room = new Room();
-//
-//                    if (this.room == null) {
-//                        this.room = room;
-//                    } else {
-//                        Door door = new Door();
-//                        this.room.addDoor(door);
-//                    }
-                    n++;
+                    if (this.room == null) {
+                        this.room = room;
+                    } else {
+                        Door door = new Door();
+                        this.room.addDoor(door);
+                    }
                 }
-                m++;
-                acc++;
             }
-
-            l++;
+            acc++;
         }
 
-        // [DEBUG] Afficher la matrice
+/*        // [DEBUG] Afficher la matrice
         System.out.println("Matrice simple");
         for (int i = 0; i < dungeon.length; i++) {
             for (int j = 0; j < dungeon[0].length; j++) {
@@ -133,7 +145,7 @@ public class Game implements Serializable {
                 System.out.print(coords[i][j] + "\t");
             }
             System.out.println();
-        }
+        }*/
 
     }
 

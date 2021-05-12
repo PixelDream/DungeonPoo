@@ -13,6 +13,5 @@ public class Main {
 
         game.launchGame();
 
-        System.out.println("Hello World!");
     }
 }
