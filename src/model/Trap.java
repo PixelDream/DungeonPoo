@@ -4,25 +4,25 @@ import java.io.Serializable;
 
 public class Trap implements Serializable {
 
-    private Direction direction;
-    private double damage;
-    private String type;
+    private String name;
+    private int damage;
+    private double rarety;
 
-    public Trap(Direction direction, double damage, String type) {
-        this.direction = direction;
+    public Trap(String type, int damage, double rarety) {
+        this.name = type;
         this.damage = damage;
-        this.type = type;
+        this.rarety = rarety;
     }
 
-    public Direction getDirection() {
-        return direction;
+    public String getName() {
+        return name;
     }
 
-    public double getDamage() {
+    public int getDamage() {
         return damage;
     }
 
-    public String getType() {
-        return type;
+    public double getRarety() {
+        return rarety;
     }
 }

@@ -1,6 +1,7 @@
 package utils;
 
 import model.Attack;
+import model.Trap;
 import model.Weapon;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -20,20 +21,30 @@ public class FileManager implements Serializable {
     final private String dataFolder = System.getProperty("user.home") + "\\Local Settings\\Application Data\\";
     public List<Weapon> weaponsList;
     public List<Attack> attacksList;
+    public List<Trap> trapsList;
     private String name_app = "DungeonPoo";
     final public String path = dataFolder + name_app;
 
     public FileManager(String name_app) {
+        this.name_app = name_app;
+        writeFolderAppData();
+
         weaponsList = new ArrayList<>();
         attacksList = new ArrayList<>();
-        this.name_app = name_app;
-
-        writeFolderAppData();
+        trapsList = new ArrayList<>();
         initWeapon();
         initAttack();
+        initTraps();
+
+        /*for (Weapon weapon : weaponsList) {
+            System.out.println(weapon.getName());
+        }
         for (Attack attack : attacksList) {
             System.out.println(attack.getName());
         }
+        for (Trap trap : trapsList) {
+            System.out.println(trap.getName());
+        }*/
     }
 
     public void writeFolderAppData() {
@@ -66,7 +77,7 @@ public class FileManager implements Serializable {
 
         while(i.hasNext()) {
             Element el = (Element) i.next();
-            Weapon weapon = new Weapon(el.getChild("name").getText(), el.getChild("type").getText(), Integer.parseInt(el.getChild("damage").getText()), Double.parseDouble(el.getChild("rarety").getText()));
+            Weapon weapon = new Weapon(el.getChild("name").getText(), el.getChild("type").getText(), Integer.parseInt(el.getChild("damage").getText()), Double.parseDouble(el.getChild("rarity").getText()));
             weaponsList.add(weapon);
         }
     }
@@ -77,9 +88,19 @@ public class FileManager implements Serializable {
 
         while(i.hasNext()) {
             Element el = (Element) i.next();
-            System.out.println(el.getChild("name"));
             Attack attack = new Attack(el.getChild("name").getText(), Integer.parseInt(el.getChild("damage").getText()), Double.parseDouble(el.getChild("luck").getText()));
             attacksList.add(attack);
+        }
+    }
+
+    private void initTraps() {
+
+        Iterator i = getXml("src/fixture/traps.xml","attack");
+
+        while(i.hasNext()) {
+            Element el = (Element) i.next();
+            Trap trap = new Trap(el.getChild("name").getText(), Integer.parseInt(el.getChild("damage").getText()), Double.parseDouble(el.getChild("rarity").getText()));
+            trapsList.add(trap);
         }
     }
 

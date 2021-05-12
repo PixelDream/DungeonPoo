@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE traps [
+        <!ELEMENT traps (trap)*>
+        <!ELEMENT trap (name, damage, rarity)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT damage (#PCDATA)>
+        <!ELEMENT rarity (#PCDATA)>
+]>
+
+<traps>
+    <trap>
+        <name>un trou</name>
+        <damage>2</damage>
+        <rarity>0.2</rarity>
+    </trap>
+    <trap>
+        <name>des barbelés</name>
+        <damage>5</damage>
+        <rarity>0.1</rarity>
+    </trap>
+    <trap>
+        <name></name>
+        <damage></damage>
+        <rarity>0.</rarity>
+    </trap>
+    <trap>
+        <name></name>
+        <damage></damage>
+        <rarity>0.</rarity>
+    </trap>
+</traps>

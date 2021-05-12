@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE weapons [
         <!ELEMENT weapons (weapon)*>
-        <!ELEMENT weapon (name, type, damage, rarety)>
+        <!ELEMENT weapon (name, type, damage, rarity)>
         <!ELEMENT name (#PCDATA)>
         <!ELEMENT type (#PCDATA)>
         <!ELEMENT damage (#PCDATA)>
-        <!ELEMENT rarety (#PCDATA)>
+        <!ELEMENT rarity (#PCDATA)>
 ]>
 
 <weapons>
@@ -13,24 +13,24 @@
         <name>Armagedon</name>
         <type>Epee</type>
         <damage>12</damage>
-        <rarety>0.01</rarety>
+        <rarity>0.01</rarity>
     </weapon>
     <weapon>
         <name>Arc lance flamme</name>
         <type>Arc</type>
         <damage>7</damage>
-        <rarety>0.3</rarety>
+        <rarity>0.3</rarity>
     </weapon>
     <weapon>
         <name>Acide sulfurique</name>
         <type>Poison</type>
         <damage>9</damage>
-        <rarety>0.4</rarety>
+        <rarity>0.4</rarity>
     </weapon>
     <weapon>
         <name>Eau bouillante</name>
         <type>Poison</type>
         <damage>2</damage>
-        <rarety>0.8</rarety>
+        <rarity>0.8</rarity>
     </weapon>
 </weapons>

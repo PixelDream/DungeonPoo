@@ -12,6 +12,5 @@ public class Main {
         Game game = new Game(player, Difficulty.EASY);
 
         game.launchGame();
-
     }
 }
