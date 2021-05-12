@@ -23,6 +23,7 @@ public class FileManager implements Serializable {
 
     public FileManager(String name_app) {
         weaponsList = new ArrayList<>();
+        attacksList = new ArrayList<>();
         this.name_app = name_app;
 
         writeFolderAppData();
