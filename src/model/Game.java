@@ -42,7 +42,7 @@ public class Game implements Serializable {
 //        System.out.println("LuckEnemy: " + difficulty.getLuckEnemy());
 //        System.out.println("NumberRoom: " + difficulty.getNumberRoom());
 //        System.out.println("NumberRoomMax: " + difficulty.getNumberRoomMax());
-        System.out.println(this);
+        showMap();
         nextRound();
     }
 
@@ -52,6 +52,10 @@ public class Game implements Serializable {
 
     public static Game openGame() throws IOException {
         return (Game) Main.fm().openSavedObject("game-saved.bin");
+    }
+
+    public void showMap() {
+        System.out.println(this);
     }
 
     private void generateDungeon() {
@@ -142,7 +146,7 @@ public class Game implements Serializable {
 
         history.add(player.getPosition());
 
-        System.out.println(this);
+        showMap();
 
         this.saveGame();
 
