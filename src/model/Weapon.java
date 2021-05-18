@@ -31,4 +31,6 @@ public class Weapon extends Equipment implements Serializable {
     public double getRarety() {
         return rarety;
     }
+
+
 }

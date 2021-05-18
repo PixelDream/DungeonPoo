@@ -13,4 +13,8 @@ public class Room implements Serializable {
     public Room(Position position) {
         this.position = position;
     }
+
+    public void addChest(Chest chest) {
+        this.chest = chest;
+    }
 }

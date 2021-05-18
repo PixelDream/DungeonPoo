@@ -19,13 +19,13 @@
         <rarity>0.1</rarity>
     </trap>
     <trap>
-        <name></name>
-        <damage></damage>
-        <rarity>0.</rarity>
+        <name>bla</name>
+        <damage>1</damage>
+        <rarity>0.2</rarity>
     </trap>
     <trap>
-        <name></name>
-        <damage></damage>
-        <rarity>0.</rarity>
+        <name>dza</name>
+        <damage>2</damage>
+        <rarity>0.1</rarity>
     </trap>
 </traps>

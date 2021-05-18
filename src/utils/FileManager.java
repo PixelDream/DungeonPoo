@@ -19,9 +19,9 @@ import java.util.List;
 public class FileManager implements Serializable {
 
     final private String dataFolder = System.getProperty("user.home") + "\\Local Settings\\Application Data\\";
-    public List<Weapon> weaponsList;
-    public List<Attack> attacksList;
-    public List<Trap> trapsList;
+    private static List<Weapon> weaponsList;
+    private static List<Attack> attacksList;
+    private static List<Trap> trapsList;
     private String name_app = "DungeonPoo";
     final public String path = dataFolder + name_app;
 
@@ -41,10 +41,10 @@ public class FileManager implements Serializable {
         }
         for (Attack attack : attacksList) {
             System.out.println(attack.getName());
-        }
+        }*/
         for (Trap trap : trapsList) {
             System.out.println(trap.getName());
-        }*/
+        }
     }
 
     public void writeFolderAppData() {
@@ -95,7 +95,7 @@ public class FileManager implements Serializable {
 
     private void initTraps() {
 
-        Iterator i = getXml("src/fixture/traps.xml","attack");
+        Iterator i = getXml("src/fixture/traps.xml","trap");
 
         while(i.hasNext()) {
             Element el = (Element) i.next();
@@ -127,5 +127,17 @@ public class FileManager implements Serializable {
         }
 
         return o;
+    }
+
+    public static List<Weapon> getWeaponsList() {
+        return weaponsList;
+    }
+
+    public static List<Attack> getAttacksList() {
+        return attacksList;
+    }
+
+    public static List<Trap> getTrapsList() {
+        return trapsList;
     }
 }

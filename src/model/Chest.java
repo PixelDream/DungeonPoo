@@ -7,4 +7,8 @@ public class Chest implements Serializable {
     public Chest() {
 
     }
+
+    public Chest(int chestNumber){
+
+    }
 }

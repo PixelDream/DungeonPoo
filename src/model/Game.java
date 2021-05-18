@@ -1,5 +1,7 @@
 package model;
 
+import dungeon.Main;
+import utils.ClassicMethods;
 import utils.FileManager;
 
 import java.io.Serializable;
@@ -15,7 +17,6 @@ public class Game implements Serializable {
     private Room room;
     private Difficulty difficulty;
     private Room[][] roomList;
-    private static FileManager fm = new FileManager("DungeonPoo");
 
     public Game(Player player, Difficulty difficulty) {
         this.player = player;
@@ -38,11 +39,11 @@ public class Game implements Serializable {
     }
 
     public void saveGame() {
-        fm.saveObject(this, "game-saved.bin");
+        Main.fm().saveObject(this, "game-saved.bin");
     }
 
     public static Game openGame(){
-        return (Game) fm.openSavedObject("game-saved.bin");
+        return (Game) Main.fm().openSavedObject("game-saved.bin");
     }
 
     private void generateDungeon() {
@@ -61,6 +62,12 @@ public class Game implements Serializable {
         for(int x = 0; x < size; x++) {
             for(int y = 0; y < size; y ++ ) {
                 Room room = new Room(new Position(x, y));
+
+                if(ClassicMethods.random(0,10) < luckChest * 10){
+                    Chest chest = new Chest();
+                    room.addChest(chest);
+                }
+
                 roomList[x][y] = room;
             }
         }
@@ -73,10 +80,6 @@ public class Game implements Serializable {
 
     public int getScore() {
         return score;
-    }
-
-    public int random(int min, int max) {
-        return min + (int) (Math.random() * ((max - min) + 1));
     }
 
     @Override
