@@ -3,5 +3,5 @@ package model;
 import java.io.Serializable;
 
 public enum Direction implements Serializable {
-    WEST, EAST, NORTH, SOUTH;
+    NONE, WEST, EAST, NORTH, SOUTH;
 }

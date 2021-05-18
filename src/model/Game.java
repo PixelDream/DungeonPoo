@@ -1,13 +1,16 @@
 package model;
 
+<<<<<<< Updated upstream
 import dungeon.Main;
 import utils.ClassicMethods;
+=======
+import utils.Console;
+>>>>>>> Stashed changes
 import utils.FileManager;
+import utils.Interaction;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Stack;
 
 public class Game implements Serializable {
     private int gameNumber;
@@ -17,6 +20,12 @@ public class Game implements Serializable {
     private Room room;
     private Difficulty difficulty;
     private Room[][] roomList;
+<<<<<<< Updated upstream
+=======
+    private static FileManager fm = new FileManager("DungeonPoo");
+    private int size;
+    private Stack<Position> history = new Stack();
+>>>>>>> Stashed changes
 
     public Game(Player player, Difficulty difficulty) {
         this.player = player;
@@ -24,6 +33,7 @@ public class Game implements Serializable {
         this.score = 0;
         this.gameSucceed = false;
         this.difficulty = difficulty;
+        size = ((int) Math.sqrt(difficulty.getNumberRoomMax()));
 
         generateDungeon();
 
@@ -51,8 +61,6 @@ public class Game implements Serializable {
         double luckChest = difficulty.getLuckChest();
         double luckTrap = difficulty.getLuckTrap();
         double luckEnemy = difficulty.getLuckEnemy();
-
-        final int size = ((int) Math.sqrt(difficulty.getNumberRoomMax()));
 
         // Faire une matrice de taille numberRoomMax
         Position.MAX_XY = size;
@@ -82,6 +90,76 @@ public class Game implements Serializable {
         return score;
     }
 
+<<<<<<< Updated upstream
+=======
+    public int random(int min, int max) {
+        return min + (int) (Math.random() * ((max - min) + 1));
+    }
+
+    public void nextRound() {
+        Console.afficheln("Ou voulez-vous allez ?");
+
+        // C'est dans le sens oppossé
+
+        if (player.getPosition().getX() - 1 < size && player.getPosition().getX() - 1 >= 0) {
+            if (!history.empty() && history.lastElement().is(player.getPosition().getX() - 1, player.getPosition().getY())) {
+                Console.info("1 - North (En arrière)");
+            } else {
+                Console.info("1 - North");
+            }
+        }
+
+        if (player.getPosition().getX() + 1 < size && player.getPosition().getX() + 1 >= 0) {
+            if (!history.empty() && history.lastElement().is(player.getPosition().getX() + 1, player.getPosition().getY())) {
+                Console.info("2 - South (En arrière)");
+            } else {
+                Console.info("2 - South");
+            }
+        }
+
+        if (player.getPosition().getY() - 1 < size && player.getPosition().getY() - 1 >= 0) {
+            if (!history.empty() && history.lastElement().is(player.getPosition().getX(), player.getPosition().getY() - 1)) {
+                Console.info("3 - West (En arrière)");
+            } else {
+                Console.info("3 - West");
+            }
+        }
+
+        if (player.getPosition().getY() + 1 < size && player.getPosition().getY() + 1 >= 0) {
+            if (!history.empty() && history.lastElement().is(player.getPosition().getX(), player.getPosition().getY() + 1)) {
+                Console.info("4 - East (En arrière)");
+            } else {
+                Console.info("4 - East");
+            }
+        }
+
+        Console.affiche("Quel est votre choix: ");
+        String ligne = Interaction.lireString();
+        int choix = Integer.valueOf(ligne);
+
+        switch (choix) {
+            case 1 -> player.getPosition().updateCoords(player.getPosition().getX() - 1, player.getPosition().getY(), Direction.NORTH);
+            case 2 -> player.getPosition().updateCoords(player.getPosition().getX() + 1, player.getPosition().getY(), Direction.SOUTH);
+            case 3 -> player.getPosition().updateCoords(player.getPosition().getX(), player.getPosition().getY() - 1, Direction.EAST);
+            case 4 -> player.getPosition().updateCoords(player.getPosition().getX(), player.getPosition().getY() + 1, Direction.WEST);
+            default -> {
+                nextRound();
+                Console.afficheln("Ce n'est pas une bonne manipulation...");
+            }
+        }
+
+        history.add(player.getPosition());
+
+        System.out.println(this);
+
+        nextRound();
+    }
+
+    public void playAction() {
+        Console.afficheln("Le jeu de role...");
+    }
+
+>>>>>>> Stashed changes
     @Override
     public String toString() {
         StringBuilder strBuilder = new StringBuilder("\n");
@@ -93,7 +171,17 @@ public class Game implements Serializable {
             for (int y = 0; y < size; y++) {
                 Position pos = player.getPosition();
                 if (x == pos.getX() && y == pos.getY()) {
-                    strBuilder.append("| " + "⭕" + " |  ");
+                    strBuilder.append("| ");
+
+                    switch (pos.getDirection()) {
+                        case NORTH -> strBuilder.append("▲");
+                        case EAST -> strBuilder.append("◀");
+                        case SOUTH -> strBuilder.append("▼");
+                        case WEST -> strBuilder.append("▶");
+                        default -> strBuilder.append("⭕");
+                    }
+
+                    strBuilder.append(" |  ");
                 } else {
                     strBuilder.append("| " + "?" + " |  ");
                 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Position implements Serializable {
     private int x, y;
+    private Direction direction;
 
     private final static int MIN_X = 0;
     private final static int MIN_Y = 0;
@@ -13,6 +14,7 @@ public class Position implements Serializable {
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
+        this.direction = Direction.NONE;
     }
 
     public int getX() {
@@ -21,5 +23,19 @@ public class Position implements Serializable {
 
     public int getY() {
         return y;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void updateCoords(int x, int y, Direction direction) {
+        this.x = x;
+        this.y = y;
+        this.direction = direction;
+    }
+
+    public boolean is(int x, int y) {
+        return this.x == x && this.y == y;
     }
 }
