@@ -41,9 +41,9 @@ public class FileManager implements Serializable {
         for (Attack attack : attacksList) {
             System.out.println(attack.getName());
         }*/
-        for (Trap trap : trapsList) {
+/*        for (Trap trap : trapsList) {
             System.out.println(trap.getName());
-        }
+        }*/
     }
 
     public void writeFolderAppData() {
@@ -115,13 +115,13 @@ public class FileManager implements Serializable {
         }
     }
 
-    public Object openSavedObject(String nomFichier){
+    public Object openSavedObject(String nomFichier) throws IOException {
         Object o = null;
         try (ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(path + "/" + nomFichier))) {
             o = objectInput.readObject();
         } catch (EOFException eof) {
             System.out.println("Fichier de sauvegarde vide.");
-        } catch (IOException | ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
 

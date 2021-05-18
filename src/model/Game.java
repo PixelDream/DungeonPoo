@@ -1,14 +1,13 @@
 package model;
 
-<<<<<<< Updated upstream
 import dungeon.Main;
 import utils.ClassicMethods;
-=======
 import utils.Console;
->>>>>>> Stashed changes
 import utils.FileManager;
 import utils.Interaction;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Stack;
 
@@ -20,12 +19,8 @@ public class Game implements Serializable {
     private Room room;
     private Difficulty difficulty;
     private Room[][] roomList;
-<<<<<<< Updated upstream
-=======
-    private static FileManager fm = new FileManager("DungeonPoo");
     private int size;
     private Stack<Position> history = new Stack();
->>>>>>> Stashed changes
 
     public Game(Player player, Difficulty difficulty) {
         this.player = player;
@@ -33,26 +28,29 @@ public class Game implements Serializable {
         this.score = 0;
         this.gameSucceed = false;
         this.difficulty = difficulty;
-        size = ((int) Math.sqrt(difficulty.getNumberRoomMax()));
+        size = ((int) Math.sqrt(difficulty.getNumberRoom()));
 
         generateDungeon();
+        saveGame();
 
         player.faireAction();
     }
 
     public void launchGame() {
-        System.out.println("LuckChest: " + difficulty.getLuckChest());
-        System.out.println("LuckTrap: " + difficulty.getLuckTrap());
-        System.out.println("LuckEnemy: " + difficulty.getLuckEnemy());
-        System.out.println("NumberRoom: " + difficulty.getNumberRoom());
-        System.out.println("NumberRoomMax: " + difficulty.getNumberRoomMax());
+//        System.out.println("LuckChest: " + difficulty.getLuckChest());
+//        System.out.println("LuckTrap: " + difficulty.getLuckTrap());
+//        System.out.println("LuckEnemy: " + difficulty.getLuckEnemy());
+//        System.out.println("NumberRoom: " + difficulty.getNumberRoom());
+//        System.out.println("NumberRoomMax: " + difficulty.getNumberRoomMax());
+        System.out.println(this);
+        nextRound();
     }
 
     public void saveGame() {
         Main.fm().saveObject(this, "game-saved.bin");
     }
 
-    public static Game openGame(){
+    public static Game openGame() throws IOException {
         return (Game) Main.fm().openSavedObject("game-saved.bin");
     }
 
@@ -88,12 +86,6 @@ public class Game implements Serializable {
 
     public int getScore() {
         return score;
-    }
-
-<<<<<<< Updated upstream
-=======
-    public int random(int min, int max) {
-        return min + (int) (Math.random() * ((max - min) + 1));
     }
 
     public void nextRound() {
@@ -152,6 +144,8 @@ public class Game implements Serializable {
 
         System.out.println(this);
 
+        this.saveGame();
+
         nextRound();
     }
 
@@ -159,12 +153,9 @@ public class Game implements Serializable {
         Console.afficheln("Le jeu de role...");
     }
 
->>>>>>> Stashed changes
     @Override
     public String toString() {
         StringBuilder strBuilder = new StringBuilder("\n");
-
-        final int size = ((int) Math.sqrt(difficulty.getNumberRoomMax()));
 
         for (int x = 0; x < size; x++) {
             //if (x == 0) strBuilder.append(repeatString("_", size*5) + "\n");
@@ -190,8 +181,6 @@ public class Game implements Serializable {
             strBuilder.append("\n");
             //if (x == size-1) strBuilder.append(repeatString("_", size*5) + "\n");
         }
-
-        strBuilder.append("\n");
 
         return strBuilder.toString();
     }
