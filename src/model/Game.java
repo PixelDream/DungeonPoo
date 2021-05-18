@@ -1,26 +1,21 @@
 package model;
 
-import dungeon.Main;
+import controller.Main;
 import utils.ClassicMethods;
 import utils.Console;
-import utils.FileManager;
 import utils.Interaction;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Stack;
 
 public class Game implements Serializable {
     private int gameNumber;
     private int score;
     private boolean gameSucceed;
     private Player player;
-    private Room room;
     private Difficulty difficulty;
     private Room[][] roomList;
     private int size;
-    private Stack<Position> history = new Stack();
 
     public Game(Player player, Difficulty difficulty) {
         this.player = player;
@@ -33,7 +28,6 @@ public class Game implements Serializable {
         generateDungeon();
         saveGame();
 
-        player.faireAction();
     }
 
     public void launchGame() {
@@ -41,7 +35,6 @@ public class Game implements Serializable {
 //        System.out.println("LuckTrap: " + difficulty.getLuckTrap());
 //        System.out.println("LuckEnemy: " + difficulty.getLuckEnemy());
 //        System.out.println("NumberRoom: " + difficulty.getNumberRoom());
-//        System.out.println("NumberRoomMax: " + difficulty.getNumberRoomMax());
         showMap();
         nextRound();
     }
@@ -73,10 +66,12 @@ public class Game implements Serializable {
             for(int y = 0; y < size; y ++ ) {
                 Room room = new Room(new Position(x, y));
 
-                if(ClassicMethods.random(0,10) < luckChest * 10){
-                    Chest chest = new Chest();
-                    room.addChest(chest);
-                }
+//                if(ClassicMethods.random(0,10) < luckChest * 10){
+//                    Chest chest = new Chest();
+//                    room.addChest(chest);
+//                }
+
+                if(ClassicMethods.random(0,10) < luckTrap * 10) room.setTrap(new Trap());
 
                 roomList[x][y] = room;
             }
@@ -98,7 +93,7 @@ public class Game implements Serializable {
         // C'est dans le sens oppossé
 
         if (player.getPosition().getX() - 1 < size && player.getPosition().getX() - 1 >= 0) {
-            if (!history.empty() && history.lastElement().is(player.getPosition().getX() - 1, player.getPosition().getY())) {
+            if (player.getPosition().getDirection().equals(Direction.SOUTH)) {
                 Console.info("1 - North (En arrière)");
             } else {
                 Console.info("1 - North");
@@ -106,7 +101,7 @@ public class Game implements Serializable {
         }
 
         if (player.getPosition().getX() + 1 < size && player.getPosition().getX() + 1 >= 0) {
-            if (!history.empty() && history.lastElement().is(player.getPosition().getX() + 1, player.getPosition().getY())) {
+            if (player.getPosition().getDirection().equals(Direction.NORTH)) {
                 Console.info("2 - South (En arrière)");
             } else {
                 Console.info("2 - South");
@@ -114,7 +109,7 @@ public class Game implements Serializable {
         }
 
         if (player.getPosition().getY() - 1 < size && player.getPosition().getY() - 1 >= 0) {
-            if (!history.empty() && history.lastElement().is(player.getPosition().getX(), player.getPosition().getY() - 1)) {
+            if (player.getPosition().getDirection().equals(Direction.EAST)) {
                 Console.info("3 - West (En arrière)");
             } else {
                 Console.info("3 - West");
@@ -122,7 +117,7 @@ public class Game implements Serializable {
         }
 
         if (player.getPosition().getY() + 1 < size && player.getPosition().getY() + 1 >= 0) {
-            if (!history.empty() && history.lastElement().is(player.getPosition().getX(), player.getPosition().getY() + 1)) {
+            if (player.getPosition().getDirection().equals(Direction.WEST)) {
                 Console.info("4 - East (En arrière)");
             } else {
                 Console.info("4 - East");
@@ -134,17 +129,21 @@ public class Game implements Serializable {
         int choix = Integer.valueOf(ligne);
 
         switch (choix) {
-            case 1 -> player.getPosition().updateCoords(player.getPosition().getX() - 1, player.getPosition().getY(), Direction.NORTH);
-            case 2 -> player.getPosition().updateCoords(player.getPosition().getX() + 1, player.getPosition().getY(), Direction.SOUTH);
-            case 3 -> player.getPosition().updateCoords(player.getPosition().getX(), player.getPosition().getY() - 1, Direction.EAST);
-            case 4 -> player.getPosition().updateCoords(player.getPosition().getX(), player.getPosition().getY() + 1, Direction.WEST);
+            case 1 -> player.move(player.getPosition().getX() - 1, player.getPosition().getY(), Direction.NORTH);
+            case 2 -> player.move(player.getPosition().getX() + 1, player.getPosition().getY(), Direction.SOUTH);
+            case 3 -> player.move(player.getPosition().getX(), player.getPosition().getY() - 1, Direction.EAST);
+            case 4 -> player.move(player.getPosition().getX(), player.getPosition().getY() + 1, Direction.WEST);
             default -> {
                 nextRound();
                 Console.afficheln("Ce n'est pas une bonne manipulation...");
             }
         }
 
-        history.add(player.getPosition());
+        getCurentRoom().setVisited(true);
+
+        if (getCurentRoom().getTrap() != null) {
+            Console.info("Un piège: " + getCurentRoom().getTrap().getName());
+        }
 
         showMap();
 
@@ -153,16 +152,11 @@ public class Game implements Serializable {
         nextRound();
     }
 
-    public void playAction() {
-        Console.afficheln("Le jeu de role...");
-    }
-
     @Override
     public String toString() {
         StringBuilder strBuilder = new StringBuilder("\n");
 
         for (int x = 0; x < size; x++) {
-            //if (x == 0) strBuilder.append(repeatString("_", size*5) + "\n");
             for (int y = 0; y < size; y++) {
                 Position pos = player.getPosition();
                 if (x == pos.getX() && y == pos.getY()) {
@@ -178,21 +172,25 @@ public class Game implements Serializable {
 
                     strBuilder.append(" |  ");
                 } else {
-                    strBuilder.append("| " + "?" + " |  ");
+                    strBuilder.append("| ");
+
+                    if (roomList[x][y].isVisited()) {
+                        strBuilder.append("Ok");
+                    } else {
+                        strBuilder.append("?");
+                    }
+
+                    strBuilder.append(" |  ");
                 }
             }
 
             strBuilder.append("\n");
-            //if (x == size-1) strBuilder.append(repeatString("_", size*5) + "\n");
         }
 
         return strBuilder.toString();
     }
 
-//    private String repeatString(String str, int occ) {
-//        StringBuilder strBuilder = new StringBuilder();
-//        for (int i = 0; i < occ; i++) strBuilder.append(str);
-//
-//        return strBuilder.toString();
-//    }
+    public Room getCurentRoom() {
+        return roomList[player.getPosition().getX()][player.getPosition().getY()];
+    }
 }

@@ -18,8 +18,8 @@ public class Player implements Serializable {
         position = new Position(0, 0);
     }
 
-    public void move(){
-
+    public void move(int x, int y, Direction direction){
+        position.updateCoords(x, y, direction);
     }
 
     public void fight(Enemy enemy){
@@ -38,6 +38,4 @@ public class Player implements Serializable {
         return position;
     }
 
-    public void faireAction() {
-    }
 }

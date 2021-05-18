@@ -1,4 +1,4 @@
-package dungeon;
+package controller;
 
 import model.Difficulty;
 import model.Game;
@@ -34,13 +34,6 @@ public class Main {
         } catch (IOException e) {
             newGame();
         }
-
-
-        System.out.println("----------------------------------------------------------");
-
-        Trap trap = new Trap();
-
-        System.out.println("\n--------------\n"+trap);
     }
 
     public static void newGame() {
