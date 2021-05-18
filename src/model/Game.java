@@ -4,6 +4,7 @@ import utils.FileManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Game implements Serializable {
@@ -13,8 +14,7 @@ public class Game implements Serializable {
     private Player player;
     private Room room;
     private Difficulty difficulty;
-    private List<Room> roomList = new ArrayList<>();
-    private List<Key> keysList;
+    private Room[][] roomList;
     private static FileManager fm = new FileManager("DungeonPoo");
 
     public Game(Player player, Difficulty difficulty) {
@@ -25,6 +25,8 @@ public class Game implements Serializable {
         this.difficulty = difficulty;
 
         generateDungeon();
+
+        player.faireAction();
     }
 
     public void launchGame() {
@@ -44,108 +46,24 @@ public class Game implements Serializable {
     }
 
     private void generateDungeon() {
-        int numberRoomMax = difficulty.getNumberRoomMax();
-        //numberRoomMax = 9;
         int numberRoom = difficulty.getNumberRoom();
-        //numberRoom = 6;
         double luckChest = difficulty.getLuckChest();
         double luckTrap = difficulty.getLuckTrap();
         double luckEnemy = difficulty.getLuckEnemy();
 
+        final int size = ((int) Math.sqrt(difficulty.getNumberRoomMax()));
+
         // Faire une matrice de taille numberRoomMax
-        int size = ((int) Math.sqrt(numberRoomMax));
-        int[][] dungeon = new int[size][size];
+        Position.MAX_XY = size;
+        roomList = new Room[size][size];
 
-        for (int i = 0; i < size; i++)
-            for (int j = 0; j < size; j++)
-                dungeon[i][j] = 1;
-
-        // Enlever certaines rooms
-        int diffRoom = numberRoomMax - numberRoom;
-
-        for (int i = 0; i < diffRoom; i++) {
-            int x = random(0, size - 1), y = random(0, size - 1);
-            if (dungeon[x][y] != 0) {
-                dungeon[x][y] = 0;
-            } else {
-                i--;
+        // Génération des pièces
+        for(int x = 0; x < size; x++) {
+            for(int y = 0; y < size; y ++ ) {
+                Room room = new Room(new Position(x, y));
+                roomList[x][y] = room;
             }
         }
-
-        // Mettre les numéros de room dans une liste
-        int[] roomList = new int[numberRoomMax];
-        int k = 0;
-        for (int i = 0; i < size; i++)
-            for (int j = 0; j < size; j++)
-                roomList[k++] = dungeon[i][j];
-
-        // Generer les liens entre les salles avec la matrice
-        int[][] coords = new int[numberRoomMax][numberRoomMax];
-
-        // numberRoomMax = 9
-        int n = 0;
-        for (int i = 0; i < numberRoomMax; i++) { // ligne
-            int maxK = 0;
-            for (int j = 0; j < n; j++) { // colone
-                if (i != j) {
-                    if (roomList[i] == 1 && roomList[j] == 1) {
-                        if (maxK < 4) {
-                            coords[i][j] = random(0, numberRoomMax);
-                            coords[j][i] = coords[i][j];
-                            maxK++;
-                        } else {
-                            coords[i][j] = -1;
-                            coords[j][i] = coords[i][j];
-                        }
-                    } else {
-                        coords[i][j] = -1;
-                        coords[j][i] = coords[i][j];
-                    }
-                } else {
-                    coords[i][j] = -1;
-                }
-
-            }
-            n++;
-        }
-
-        // Parcourir la matrice de liens et faire les rooms
-        int numberRoomX2 = numberRoom * numberRoom;
-
-        int acc = 0;
-        for (int i = 0; i < numberRoomX2; i++) {
-            for (int j = 0; j < numberRoom; j++) {
-                for (int l = 0; l < acc; l++) {
-                    Room room = new Room();
-
-                    if (this.room == null) {
-                        this.room = room;
-                    } else {
-                        Door door = new Door();
-                        this.room.addDoor(door);
-                    }
-                }
-            }
-            acc++;
-        }
-
-/*        // [DEBUG] Afficher la matrice
-        System.out.println("Matrice simple");
-        for (int i = 0; i < dungeon.length; i++) {
-            for (int j = 0; j < dungeon[0].length; j++) {
-                System.out.print(dungeon[i][j] + "\t");
-            }
-            System.out.println();
-        }
-
-        // [DEBUG] Afficher la matrice
-        System.out.println("Matrice symétrique");
-        for (int i = 0; i < coords.length; i++) {
-            for (int j = 0; j < coords[0].length; j++) {
-                System.out.print(coords[i][j] + "\t");
-            }
-            System.out.println();
-        }*/
 
     }
 
@@ -161,4 +79,36 @@ public class Game implements Serializable {
         return min + (int) (Math.random() * ((max - min) + 1));
     }
 
+    @Override
+    public String toString() {
+        StringBuilder strBuilder = new StringBuilder("\n");
+
+        final int size = ((int) Math.sqrt(difficulty.getNumberRoomMax()));
+
+        for (int x = 0; x < size; x++) {
+            //if (x == 0) strBuilder.append(repeatString("_", size*5) + "\n");
+            for (int y = 0; y < size; y++) {
+                Position pos = player.getPosition();
+                if (x == pos.getX() && y == pos.getY()) {
+                    strBuilder.append("| " + "⭕" + " |  ");
+                } else {
+                    strBuilder.append("| " + "?" + " |  ");
+                }
+            }
+
+            strBuilder.append("\n");
+            //if (x == size-1) strBuilder.append(repeatString("_", size*5) + "\n");
+        }
+
+        strBuilder.append("\n");
+
+        return strBuilder.toString();
+    }
+
+//    private String repeatString(String str, int occ) {
+//        StringBuilder strBuilder = new StringBuilder();
+//        for (int i = 0; i < occ; i++) strBuilder.append(str);
+//
+//        return strBuilder.toString();
+//    }
 }

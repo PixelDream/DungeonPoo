@@ -10,6 +10,7 @@ public class Main {
 
         Player player = new Player("John", 100);
         Game game = new Game(player, Difficulty.EASY);
+        System.out.println(game);
 
         game.launchGame();
     }

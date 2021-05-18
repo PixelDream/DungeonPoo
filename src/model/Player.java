@@ -6,8 +6,7 @@ import java.util.List;
 
 public class Player implements Serializable {
 
-    private Room position;
-    private Direction direction;
+    private Position position;
     private String username;
     private int lifePoint;
     private List<Equipment> stuff;
@@ -16,6 +15,7 @@ public class Player implements Serializable {
         this.username = username;
         this.lifePoint = lifePoint;
         stuff = new ArrayList<>();
+        position = new Position(0, 0);
     }
 
     public void move(){
@@ -32,5 +32,12 @@ public class Player implements Serializable {
 
     public void parry(){
         // parer une attaque
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void faireAction() {
     }
 }
