@@ -14,6 +14,14 @@ public enum Difficulty implements Serializable {
     private double luckEnemy;
     private double luckTrap;
 
+    /**
+     * Difficulty constructor
+     * @param numberRoom
+     * @param luckChest
+     * @param luckEnemy
+     * @param luckTrap
+     */
+
     Difficulty(int numberRoom, double luckChest, double luckEnemy, double luckTrap) {
         this.numberRoom = numberRoom;
         this.luckChest = luckChest;

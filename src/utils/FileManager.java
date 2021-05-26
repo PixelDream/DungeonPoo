@@ -1,6 +1,7 @@
 package utils;
 
 import model.Attack;
+import model.Enemy;
 import model.Trap;
 import model.Weapon;
 import org.jdom2.Document;
@@ -21,8 +22,14 @@ public class FileManager implements Serializable {
     private static List<Weapon> weaponsList;
     private static List<Attack> attacksList;
     private static List<Trap> trapsList;
+    private static List<Enemy> enemiesList;
     private String name_app = "DungeonPoo";
     final public String path = dataFolder + name_app;
+
+    /**
+     * FileManager constructor
+     * @param name_app
+     */
 
     public FileManager(String name_app) {
         this.name_app = name_app;
@@ -31,20 +38,16 @@ public class FileManager implements Serializable {
         weaponsList = new ArrayList<>();
         attacksList = new ArrayList<>();
         trapsList = new ArrayList<>();
+        enemiesList = new ArrayList<>();
         initWeapon();
         initAttack();
         initTraps();
-
-        /*for (Weapon weapon : weaponsList) {
-            System.out.println(weapon.getName());
-        }
-        for (Attack attack : attacksList) {
-            System.out.println(attack.getName());
-        }*/
-/*        for (Trap trap : trapsList) {
-            System.out.println(trap.getName());
-        }*/
+        initEnemy();
     }
+
+    /**
+     * Create game folder method
+     */
 
     public void writeFolderAppData() {
         try {
@@ -53,6 +56,13 @@ public class FileManager implements Serializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Fetch XML Data File method
+     * @param xmlPath
+     * @param xmlObjectName
+     * @return
+     */
 
     private Iterator getXml(String xmlPath, String xmlObjectName){
         Document document = null;
@@ -70,6 +80,10 @@ public class FileManager implements Serializable {
         return i;
     }
 
+    /**
+     * Translate all the Weapons in xml to Java Object
+     */
+
     private void initWeapon() {
 
         Iterator i = getXml("src/fixture/weapons.xml", "weapon");
@@ -80,6 +94,10 @@ public class FileManager implements Serializable {
             weaponsList.add(weapon);
         }
     }
+
+    /**
+     * Translate all the Attacks in xml to Java Object
+     */
 
     private void initAttack() {
 
@@ -92,6 +110,10 @@ public class FileManager implements Serializable {
         }
     }
 
+    /**
+     * Translate all the Traps in xml to Java Object
+     */
+
     private void initTraps() {
 
         Iterator i = getXml("src/fixture/traps.xml","trap");
@@ -102,6 +124,27 @@ public class FileManager implements Serializable {
             trapsList.add(trap);
         }
     }
+
+    /**
+     * Translate all the Enemy in xml to Java Object
+     */
+
+    private void initEnemy() {
+
+        Iterator i = getXml("src/fixture/enemies.xml","enemy");
+
+        while(i.hasNext()) {
+            Element el = (Element) i.next();
+            Enemy enemy = new Enemy(el.getChild("name").getText());
+            enemiesList.add(enemy);
+        }
+    }
+
+    /**
+     * Save Java object to file by Serialization method
+     * @param obj
+     * @param nomFichier
+     */
 
     public void saveObject(Object obj, String nomFichier) {
         try {
@@ -114,6 +157,13 @@ public class FileManager implements Serializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Get Serialize object from file into Java method
+     * @param nomFichier
+     * @return
+     * @throws IOException
+     */
 
     public Object openSavedObject(String nomFichier) throws IOException {
         Object o = null;
@@ -138,5 +188,9 @@ public class FileManager implements Serializable {
 
     public static List<Trap> getTrapsList() {
         return trapsList;
+    }
+
+    public static List<Enemy> getEnemiesList() {
+        return enemiesList;
     }
 }

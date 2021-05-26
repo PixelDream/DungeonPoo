@@ -8,6 +8,13 @@ public class Attack implements Serializable {
     private double damage;
     private double luck;
 
+    /**
+     * Attack constructor from xml
+     * @param name
+     * @param damage
+     * @param luck
+     */
+
     public Attack(String name, double damage, double luck) {
         this.name = name;
         this.damage = damage;

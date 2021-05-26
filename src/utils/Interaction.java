@@ -9,33 +9,19 @@ public class Interaction {
 
     private static Scanner entree = new Scanner(System.in);
 
+    /**
+     * Read user entry method
+     * @return
+     */
+
     public static String lireString() {
         return entree.nextLine();
     }
 
-    public static void resetKeys() {
-        keys = new HashSet<Character>();
-    }
-
-    public static void acceptKey(char c) {
-        keys.add(new Character(c));
-    }
-
-    public static char readAction() {
-        boolean out = false;
-        while (true) {
-            Console.affiche(" => ");
-            char c = entree.next(".*").charAt(0);
-            for (Character car : keys) {
-                if (Character.toUpperCase(car.charValue()) == Character.toUpperCase(c))
-                    out = true;
-            }
-            if (out) {
-                entree.nextLine();
-                return c;
-            }
-        }
-    }
+    /**
+     * Sleep for 1 second method
+     * @param sec
+     */
 
     public static void pause(int sec) {
         try {
@@ -43,9 +29,5 @@ public class Interaction {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public static int randomPrct() {
-        return (int)(Math.random() * 100.0D);
     }
 }

@@ -9,9 +9,18 @@ public class RandomCollection<E> {
     private final Random random;
     private double total = 0;
 
+    /**
+     * RandomCollection constructor
+     */
+
     public RandomCollection() {
         this(new Random());
     }
+
+    /**
+     * RandomCollection constructor
+     * @param random
+     */
 
     public RandomCollection(Random random) {
         this.random = random;

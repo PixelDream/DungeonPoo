@@ -7,8 +7,12 @@ import java.util.List;
 public class Enemy implements Serializable {
 
     private String name;
-    private Attack attack;
-    private List<Equipment> stuff;
+    private List<Attack> attacks;
+    private Weapon weapon;
+
+    /**
+     * Enemy constructor
+     */
 
     public Enemy(String name, Attack attack) {
         this.name = name;
@@ -16,12 +20,16 @@ public class Enemy implements Serializable {
         stuff = new ArrayList<>();
     }
 
+    public Enemy(String name, List<Attack> attacks) {
+        this.name = name;
+        this.attacks = attacks;
+    }
+
     public String getName() {
         return name;
     }
 
-    public Attack getAttack() {
-        return attack;
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
     }
-
 }

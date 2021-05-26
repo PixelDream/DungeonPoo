@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE enemies [
+        <!ELEMENT enemies (enemy)*>
+        <!ELEMENT enemy (name, attacks)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT attacks (attack)*>
+        <!ELEMENT attack (#PCDATA)>
+]>
+
+<enemies>
+    <enemy>
+        <name>Squelette</name>
+        <attacks>
+            <attack>Flèche enflammée</attack>
+            <attack>Tibia</attack>
+        </attacks>
+    </enemy>
+    <enemy>
+        <name>Sorcière</name>
+        <attacks>
+            <attack>Poison</attack>
+            <attack>Lapin ensorcelé</attack>
+        </attacks>
+    </enemy>
+    <enemy>
+        <name>Mort vivant</name>
+        <attacks>
+            <attack>Bouts de peau</attack>
+            <attack>Crocs</attack>
+        </attacks>
+    </enemy>
+    <enemy>
+        <name>Momie</name>
+        <attacks>
+            <attack>Bandage</attack>
+            <attack>Gifle</attack>
+        </attacks>
+    </enemy>
+    <enemy>
+        <name>Sanglier</name>
+        <attacks>
+            <attack>Défenses</attack>
+            <attack>Crocs</attack>
+        </attacks>
+    </enemy>
+    <enemy>
+        <name>Dragon</name>
+        <attacks>
+            <attack>Feu</attack>
+            <attack>Griffe</attack>
+        </attacks>
+    </enemy>
+    <enemy>
+        <name>Troll</name>
+        <attacks>
+            <attack>Massu</attack>
+            <attack>Poing</attack>
+        </attacks>
+    </enemy>
+    <enemy>
+        <name>Gnome</name>
+        <attacks>
+            <attack>Epée</attack>
+            <attack>Genou</attack>
+        </attacks>
+    </enemy>
+    <enemy>
+        <name>Santor</name>
+        <attacks>
+            <attack>Epée</attack>
+            <attack>Arc</attack>
+        </attacks>
+    </enemy>
+    <enemy>
+        <name>Fée</name>
+        <attacks>
+            <attack>Sortilège</attack>
+            <attack>Baguette</attack>
+        </attacks>
+    </enemy>
+    <enemy>
+        <name>Troupeau de nain</name>
+        <attacks>
+            <attack>Pieds</attack>
+            <attack>Poing dans les parties intimes</attack>
+        </attacks>
+    </enemy>
+</enemies>

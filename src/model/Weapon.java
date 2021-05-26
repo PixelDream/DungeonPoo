@@ -2,12 +2,16 @@ package model;
 
 import java.io.Serializable;
 
-public class Weapon extends Equipment implements Serializable {
+public class Weapon implements Serializable {
 
     private String name;
     private String type;
     private int damage;
     private double rarety;
+
+    /**
+     * Random weapon constructor
+     */
 
     public Weapon(String name, String type, int damage, double rarety) {
         this.name = name;

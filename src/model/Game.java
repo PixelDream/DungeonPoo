@@ -7,6 +7,8 @@ import utils.Interaction;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game implements Serializable {
     private int gameNumber;
@@ -16,6 +18,13 @@ public class Game implements Serializable {
     private Difficulty difficulty;
     private Room[][] roomList;
     private int size;
+
+    /**
+     * Game constructor
+     *
+     * @param player
+     * @param difficulty
+     */
 
     public Game(Player player, Difficulty difficulty) {
         this.player = player;
@@ -30,6 +39,21 @@ public class Game implements Serializable {
 
     }
 
+    /**
+     * Open saved game from file methode
+     *
+     * @return saved Game
+     * @throws IOException
+     */
+
+    public static Game openGame() throws IOException {
+        return (Game) Main.fm().openSavedObject("game-saved.bin");
+    }
+
+    /**
+     * Launch game method
+     */
+
     public void launchGame() {
 //        System.out.println("LuckChest: " + difficulty.getLuckChest());
 //        System.out.println("LuckTrap: " + difficulty.getLuckTrap());
@@ -39,17 +63,25 @@ public class Game implements Serializable {
         nextRound();
     }
 
+    /**
+     * Save game to file method
+     */
+
     public void saveGame() {
         Main.fm().saveObject(this, "game-saved.bin");
     }
 
-    public static Game openGame() throws IOException {
-        return (Game) Main.fm().openSavedObject("game-saved.bin");
-    }
+    /**
+     * Show map method
+     */
 
     public void showMap() {
         System.out.println(this);
     }
+
+    /**
+     * Generation of the dungeon's rooms method
+     */
 
     private void generateDungeon() {
         int numberRoom = difficulty.getNumberRoom();
@@ -79,20 +111,18 @@ public class Game implements Serializable {
 
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public int getScore() {
-        return score;
-    }
+    /**
+     * Changing round method
+     */
 
     public void nextRound() {
         Console.afficheln("Ou voulez-vous allez ?");
 
         // C'est dans le sens oppossé
+        List<Integer> possibleMoves = new ArrayList<>();
 
         if (player.getPosition().getX() - 1 < size && player.getPosition().getX() - 1 >= 0) {
+            possibleMoves.add(1);
             if (player.getPosition().getDirection().equals(Direction.SOUTH)) {
                 Console.info("1 - North (En arrière)");
             } else {
@@ -101,6 +131,7 @@ public class Game implements Serializable {
         }
 
         if (player.getPosition().getX() + 1 < size && player.getPosition().getX() + 1 >= 0) {
+            possibleMoves.add(2);
             if (player.getPosition().getDirection().equals(Direction.NORTH)) {
                 Console.info("2 - South (En arrière)");
             } else {
@@ -109,6 +140,7 @@ public class Game implements Serializable {
         }
 
         if (player.getPosition().getY() - 1 < size && player.getPosition().getY() - 1 >= 0) {
+            possibleMoves.add(3);
             if (player.getPosition().getDirection().equals(Direction.EAST)) {
                 Console.info("3 - West (En arrière)");
             } else {
@@ -117,6 +149,7 @@ public class Game implements Serializable {
         }
 
         if (player.getPosition().getY() + 1 < size && player.getPosition().getY() + 1 >= 0) {
+            possibleMoves.add(4);
             if (player.getPosition().getDirection().equals(Direction.WEST)) {
                 Console.info("4 - East (En arrière)");
             } else {
@@ -126,7 +159,22 @@ public class Game implements Serializable {
 
         Console.affiche("Quel est votre choix: ");
         String ligne = Interaction.lireString();
-        int choix = Integer.valueOf(ligne);
+        int choix = -1;
+        try {
+            choix = Integer.parseInt(ligne);
+        } catch (NumberFormatException e) {
+            Console.affiche("Merci d'entrer un nombre");
+        }
+
+        while (!possibleMoves.contains(choix)) {
+            Console.affiche("Quel est votre choix: ");
+            ligne = Interaction.lireString();
+            try {
+                choix = Integer.parseInt(ligne);
+            } catch (NumberFormatException e) {
+                Console.affiche("Merci d'entrer un nombre");
+            }
+        }
 
         switch (choix) {
             case 1 -> player.move(player.getPosition().getX() - 1, player.getPosition().getY(), Direction.NORTH);
@@ -188,9 +236,5 @@ public class Game implements Serializable {
         }
 
         return strBuilder.toString();
-    }
-
-    public Room getCurentRoom() {
-        return roomList[player.getPosition().getX()][player.getPosition().getY()];
     }
 }

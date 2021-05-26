@@ -10,8 +10,17 @@ public class Room implements Serializable {
     private Trap trap;
     private boolean visited = false;
 
+    /**
+     * Room constructor
+     * @param position
+     */
+
     public Room(Position position) {
         this.position = position;
+    }
+
+    public boolean hasChest() {
+        return chest != null;
     }
 
     public Position getPosition() {
