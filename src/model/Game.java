@@ -55,10 +55,6 @@ public class Game implements Serializable {
      */
 
     public void launchGame() {
-//        System.out.println("LuckChest: " + difficulty.getLuckChest());
-//        System.out.println("LuckTrap: " + difficulty.getLuckTrap());
-//        System.out.println("LuckEnemy: " + difficulty.getLuckEnemy());
-//        System.out.println("NumberRoom: " + difficulty.getNumberRoom());
         showMap();
         nextRound();
     }
@@ -94,16 +90,15 @@ public class Game implements Serializable {
         roomList = new Room[size][size];
 
         // Génération des pièces
-        for(int x = 0; x < size; x++) {
-            for(int y = 0; y < size; y ++ ) {
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
                 Room room = new Room(new Position(x, y));
 
-//                if(ClassicMethods.random(0,10) < luckChest * 10){
-//                    Chest chest = new Chest();
-//                    room.addChest(chest);
-//                }
+                if (ClassicMethods.random(0, 10) < luckTrap * 10) room.setTrap(new Trap());
+                if (ClassicMethods.random(0, 10) < luckChest * 10) room.setChest(new Chest());
+                if (ClassicMethods.random(0, 10) < luckEnemy * 10) room.setEnemy(new Enemy());
 
-                if(ClassicMethods.random(0,10) < luckTrap * 10) room.setTrap(new Trap());
+                //TODO: numberRoom Use
 
                 roomList[x][y] = room;
             }
@@ -189,16 +184,41 @@ public class Game implements Serializable {
 
         getCurentRoom().setVisited(true);
 
-        if (getCurentRoom().getTrap() != null) {
-            Console.info("Un piège: " + getCurentRoom().getTrap().getName());
-        }
+        if (getCurentRoom().getTrap() != null) Console.info("Un piège: " + getCurentRoom().getTrap().getName());
 
         showMap();
 
         this.saveGame();
 
+        checkEvents();
+
         nextRound();
     }
+
+    /**
+     * Check if there's any enemy/chest in the actual room method
+     */
+
+    private void checkEvents() {
+        Room room = roomList[player.getPosition().getX()][player.getPosition().getY()];
+
+        if (room.hasEnemy()) player.fight(room.getEnemy());
+        if (room.hasChest()) player.openChest(room.getChest());
+        if (room.hasTrap()) player.trapped(room.getTrap());
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public Room getCurentRoom() {
+        return roomList[player.getPosition().getX()][player.getPosition().getY()];
+    }
+
 
     @Override
     public String toString() {

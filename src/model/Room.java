@@ -35,12 +35,20 @@ public class Room implements Serializable {
         this.chest = chest;
     }
 
+    public boolean hasEnemy() {
+        return enemy != null;
+    }
+
     public Enemy getEnemy() {
         return enemy;
     }
 
     public void setEnemy(Enemy enemy) {
         this.enemy = enemy;
+    }
+
+    public boolean hasTrap() {
+        return trap != null;
     }
 
     public Trap getTrap() {

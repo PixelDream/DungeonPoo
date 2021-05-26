@@ -1,5 +1,8 @@
 package model;
 
+import utils.FileManager;
+import utils.RandomCollection;
+
 import java.io.Serializable;
 
 public class Weapon implements Serializable {
@@ -11,6 +14,26 @@ public class Weapon implements Serializable {
 
     /**
      * Random weapon constructor
+     */
+
+    public Weapon() {
+        RandomCollection<Weapon> rc = new RandomCollection<>();
+        for (Weapon weapon : FileManager.getWeaponsList()) rc.add(weapon.rarety, weapon);
+
+        Weapon weapon = rc.next();
+
+        this.name = weapon.name;
+        this.type = weapon.type;
+        this.damage = weapon.damage;
+        this.rarety = weapon.rarety;
+    }
+
+    /**
+     * Weapon constructor from xml file
+     * @param name
+     * @param type
+     * @param damage
+     * @param rarety
      */
 
     public Weapon(String name, String type, int damage, double rarety) {

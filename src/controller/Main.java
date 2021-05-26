@@ -42,7 +42,22 @@ public class Main {
 
         Player player = new Player(nom, 100);
 
-        Game game = new Game(player, Difficulty.EASY);
+        Difficulty difficulty = null;
+
+        while (difficulty == null) {
+            Console.afficheInLine("Quel est la difficulté (Facile, Normal, Difficile, Hardcore) : ");
+            String diff = Interaction.lireString();
+
+            switch (diff) {
+                case "Facile" -> difficulty = Difficulty.EASY;
+                case "Normal" -> difficulty = Difficulty.NORMAL;
+                case "Difficile" -> difficulty = Difficulty.DIFFICULT;
+                case "Hardcore" -> difficulty = Difficulty.HARDCORE;
+            }
+        }
+
+
+        Game game = new Game(player, difficulty);
         game.launchGame();
     }
 

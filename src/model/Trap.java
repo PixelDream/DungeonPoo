@@ -24,8 +24,6 @@ public class Trap implements Serializable {
         this.name = trap.name;
         this.damage = trap.damage;
         this.rarety = trap.rarety;
-
-        System.out.println(trap.getName());
     }
 
     /**

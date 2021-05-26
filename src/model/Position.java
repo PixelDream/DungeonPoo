@@ -6,9 +6,6 @@ public class Position implements Serializable {
     private int x, y;
     private Direction direction;
 
-    private final static int MIN_X = 0;
-    private final static int MIN_Y = 0;
-
     public static int MAX_XY = -1;
 
     /**

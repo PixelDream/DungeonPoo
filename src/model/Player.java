@@ -1,5 +1,7 @@
 package model;
 
+import utils.Console;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,6 @@ public class Player implements Serializable {
     public Player(String username, int lifePoint) {
         this.username = username;
         this.lifePoint = lifePoint;
-        stuff = new ArrayList<>();
         position = new Position(0, 0);
     }
 
@@ -41,7 +42,7 @@ public class Player implements Serializable {
      */
 
     public void fight(Enemy enemy){
-
+        Console.afficheln(enemy.getName() + " vous attaque !");
     }
 
     /**
@@ -58,6 +59,24 @@ public class Player implements Serializable {
 
     public void parry(){
         // parer une attaque
+    }
+
+    public void trapped(Trap trap) {
+        //TODO: Text
+        Console.afficheln("Vous êtes tombé dans " + trap.getName());
+        lifePoint -= trap.getDamage();
+    }
+
+    /**
+     * Open chest method
+     * @param chest
+     */
+
+    public void openChest(Chest chest) {
+        Weapon weapon = chest.getWeapon();
+        Console.afficheln("un coffre avec : " + weapon.getName() + " Youpi !");
+
+        if (this.weapon != null && weapon.getDamage() > this.weapon.getDamage()) this.weapon = weapon;
     }
 
     public Position getPosition() {

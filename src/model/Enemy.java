@@ -1,5 +1,8 @@
 package model;
 
+import utils.FileManager;
+import utils.RandomCollection;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +17,16 @@ public class Enemy implements Serializable {
      * Enemy constructor
      */
 
-    public Enemy(String name, Attack attack) {
-        this.name = name;
-        this.attack = attack;
-        stuff = new ArrayList<>();
+    public Enemy() {
+        RandomCollection<Enemy> rc = new RandomCollection<>();
+        for (Enemy e : FileManager.getEnemiesList()) rc.add(1, e);
+
+        Enemy enemy = rc.next();
+
+        this.name = enemy.name;
+
+        this.damage = weapon.damage;
+        this.rarety = weapon.rarety;
     }
 
     public Enemy(String name, List<Attack> attacks) {
