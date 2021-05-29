@@ -10,12 +10,8 @@ import java.util.List;
 public class Enemy implements Serializable {
 
     private String name;
+    private int lifePoint;
     private List<Attack> attacks;
-    private Weapon weapon;
-
-    /**
-     * Enemy constructor
-     */
 
     public Enemy() {
         RandomCollection<Enemy> rc = new RandomCollection<>();
@@ -24,21 +20,32 @@ public class Enemy implements Serializable {
         Enemy enemy = rc.next();
 
         this.name = enemy.name;
-
-        this.damage = weapon.damage;
-        this.rarety = weapon.rarety;
+        this.attacks = enemy.attacks;
+        this.lifePoint = enemy.lifePoint;;
     }
 
-    public Enemy(String name, List<Attack> attacks) {
+    /**
+     * Enemy constructor
+     */
+
+
+    public Enemy(String name) {
         this.name = name;
-        this.attacks = attacks;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
+    public boolean inLife() {
+        return lifePoint <= 0;
+    }
+
+    public int getLifePoint() {
+        return lifePoint;
+    }
+
+    public void removeLifePoint(int lifePoint) {
+        this.lifePoint -= lifePoint;
     }
 }

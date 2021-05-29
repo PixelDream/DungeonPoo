@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class Main {
     private static FileManager fm;
+    private static Game game;
 
     public static void main(String[] args) {
         fm = new FileManager("DungeonPoo");
@@ -20,7 +21,7 @@ public class Main {
         Console.afficherNomJeu();
 
         try {
-            Game game = Game.openGame();
+            game = Game.openGame();
 
             Console.afficheInLine("Voulez-vous reprendre une partie : (O/N) ");
             String res = Interaction.lireString();
@@ -63,5 +64,9 @@ public class Main {
 
     public static FileManager fm() {
         return fm;
+    }
+
+    public static Game getGame() {
+        return game;
     }
 }

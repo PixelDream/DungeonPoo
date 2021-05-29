@@ -1,5 +1,7 @@
 package model;
 
+import controller.Main;
+import utils.ClassicMethods;
 import utils.Console;
 
 import java.io.Serializable;
@@ -43,6 +45,23 @@ public class Player implements Serializable {
 
     public void fight(Enemy enemy){
         Console.afficheln(enemy.getName() + " vous attaque !");
+        while (!enemy.inLife()) {
+            int attackStrength = ClassicMethods.random(0, enemy.getLifePoint());
+            lifePoint -= attackStrength;
+
+            if (lifePoint <= 0) break;
+
+            attackStrength = ClassicMethods.random(0, enemy.getLifePoint());
+            enemy.removeLifePoint(attackStrength);
+        }
+
+        if (lifePoint <= 0) {
+            Console.afficheln("Vous n'avez plus de vie");
+            Console.afficheln("Vous avez perdu !");
+            return;
+        }
+
+        Main.getGame().getCurentRoom().clearEnemy();
     }
 
     /**

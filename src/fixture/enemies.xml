@@ -7,6 +7,14 @@
         <!ELEMENT attack (#PCDATA)>
 ]>
 
+<!-- TODO: Lenny -->
+<!--<attack> Faire ce style de modèle -->
+<!--    <name>Attaque éclaire !</name>-->
+<!--    <damage>12</damage>-->
+<!--    <lifepoint>12</lifepoint>-->
+<!--    <luck>0.18</luck>-->
+<!--</attack>-->
+
 <enemies>
     <enemy>
         <name>Squelette</name>
