@@ -30,8 +30,9 @@ public class Enemy implements Serializable {
      * @param attacks
      */
 
-    public Enemy(String name, List<Attack> attacks) {
+    public Enemy(String name, int lifePoint, List<Attack> attacks) {
         this.name = name;
+        this.lifePoint = lifePoint;
         this.attacks = attacks;
     }
 

@@ -140,8 +140,11 @@ public class FileManager implements Serializable {
             for (Element attack : el.getChild("attacks").getChildren("attack")) {
                 attacksList.add(new Attack(attack.getChild("name").getText(), Double.parseDouble(attack.getChild("damage").getText())));
             }
-            Enemy enemy = new Enemy(el.getChild("name").getText(), attacksList);
+                        Enemy enemy = new Enemy(el.getChild("name").getText(), Integer.parseInt(el.getChild("lifepoint").getText()), attacksList);
             enemiesList.add(enemy);
+        }
+        for (Enemy enemy : enemiesList) {
+            enemy.getLifePoint();
         }
     }
 
