@@ -1,6 +1,13 @@
 plugins {
-    id 'java'
+    id 'java-library'
 }
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(15)
+    }
+}
+
 
 group ''
 version '1.0-SNAPSHOT'

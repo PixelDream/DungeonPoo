@@ -47,5 +47,6 @@ public class Enemy implements Serializable {
 
     public void removeLifePoint(int lifePoint) {
         this.lifePoint -= lifePoint;
+        if (!inLife()) this.lifePoint = 0;
     }
 }

@@ -3,12 +3,10 @@ package controller;
 import model.Difficulty;
 import model.Game;
 import model.Player;
-import model.Trap;
 import utils.Console;
 import utils.FileManager;
 import utils.Interaction;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Main {
@@ -54,11 +52,12 @@ public class Main {
                 case "Normal" -> difficulty = Difficulty.NORMAL;
                 case "Difficile" -> difficulty = Difficulty.DIFFICULT;
                 case "Hardcore" -> difficulty = Difficulty.HARDCORE;
-            }
+                default -> difficulty = Difficulty.NORMAL;
+            };
         }
 
 
-        Game game = new Game(player, difficulty);
+        game = new Game(player, difficulty);
         game.launchGame();
     }
 

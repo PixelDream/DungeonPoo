@@ -44,7 +44,7 @@ public class Player implements Serializable {
      */
 
     public void fight(Enemy enemy){
-        Console.afficheln(enemy.getName() + " vous attaque !");
+        Console.afficheln(enemy.getName() + " vous attaque ! (" + enemy.getLifePoint() + "pv)");
         while (!enemy.inLife()) {
             int attackStrength = ClassicMethods.random(0, enemy.getLifePoint());
             lifePoint -= attackStrength;
@@ -53,6 +53,8 @@ public class Player implements Serializable {
 
             attackStrength = ClassicMethods.random(0, enemy.getLifePoint());
             enemy.removeLifePoint(attackStrength);
+
+            Console.afficheln("Vous avez " + lifePoint + "pv et l'ennemie a " + enemy.getLifePoint() + "pv");
         }
 
         if (lifePoint <= 0) {
