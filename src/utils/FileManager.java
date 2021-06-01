@@ -14,6 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -140,7 +141,8 @@ public class FileManager implements Serializable {
             for (Element attack : el.getChild("attacks").getChildren("attack")) {
                 attacksList.add(new Attack(attack.getChild("name").getText(), Double.parseDouble(attack.getChild("damage").getText())));
             }
-                        Enemy enemy = new Enemy(el.getChild("name").getText(), Integer.parseInt(el.getChild("lifepoint").getText()), attacksList);
+            Collections.shuffle(attacksList);
+            Enemy enemy = new Enemy(el.getChild("name").getText(), Integer.parseInt(el.getChild("lifepoint").getText()), attacksList);
             enemiesList.add(enemy);
         }
         for (Enemy enemy : enemiesList) {
