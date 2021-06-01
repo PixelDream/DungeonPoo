@@ -136,7 +136,7 @@ public class Game implements Serializable {
 
         if (player.getPosition().getY() - 1 < size && player.getPosition().getY() - 1 >= 0) {
             possibleMoves.add(3);
-            if (player.getPosition().getDirection().equals(Direction.EAST)) {
+            if (player.getPosition().getDirection().equals(Direction.WEST)) {
                 Console.info("3 - West (En arrière)");
             } else {
                 Console.info("3 - West");
@@ -145,7 +145,7 @@ public class Game implements Serializable {
 
         if (player.getPosition().getY() + 1 < size && player.getPosition().getY() + 1 >= 0) {
             possibleMoves.add(4);
-            if (player.getPosition().getDirection().equals(Direction.WEST)) {
+            if (player.getPosition().getDirection().equals(Direction.EAST)) {
                 Console.info("4 - East (En arrière)");
             } else {
                 Console.info("4 - East");
@@ -186,11 +186,11 @@ public class Game implements Serializable {
 
         if (getCurentRoom().getTrap() != null) Console.info("Un piège: " + getCurentRoom().getTrap().getName());
 
-        showMap();
-
         this.saveGame();
 
         checkEvents();
+
+        showMap();
 
         nextRound();
     }

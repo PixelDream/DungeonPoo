@@ -3,10 +3,9 @@ package model;
 import controller.Main;
 import utils.ClassicMethods;
 import utils.Console;
+import utils.Interaction;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Player implements Serializable {
 
@@ -45,7 +44,10 @@ public class Player implements Serializable {
 
     public void fight(Enemy enemy){
         Console.afficheln(enemy.getName() + " vous attaque ! (" + enemy.getLifePoint() + "pv)");
-        while (!enemy.inLife()) {
+
+        if (fleeTheFight()) return;
+
+        while (enemy.inLife()) {
             int attackStrength = ClassicMethods.random(0, enemy.getLifePoint());
             lifePoint -= attackStrength;
 
@@ -68,10 +70,19 @@ public class Player implements Serializable {
 
     /**
      * Flee a fight method
+     * @return
      */
 
-    public void fleeTheFight(){
-        // fuire un combat
+    public boolean fleeTheFight(){
+        boolean isFlee = false;
+        Console.afficheInLine("Vous voulez fuir le combat (Oui, Non) : ");
+        String res = Interaction.lireString();
+        switch (res.toLowerCase()) {
+            case "oui" -> isFlee = true;
+            case "non" -> isFlee = false;
+        }
+
+        return isFlee;
     }
 
     /**

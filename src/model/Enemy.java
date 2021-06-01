@@ -41,7 +41,7 @@ public class Enemy implements Serializable {
     }
 
     public boolean inLife() {
-        return lifePoint <= 0;
+        return lifePoint > 0;
     }
 
     public int getLifePoint() {
