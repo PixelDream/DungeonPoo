@@ -23,7 +23,8 @@ public class Player implements Serializable {
     public Player(String username, int lifePoint) {
         this.username = username;
         this.lifePoint = lifePoint;
-        position = new Position(0, 0);
+        this.position = new Position(0, 0);
+        this.weapon = new Weapon("Coup de poing","Poing",10,0);
     }
 
     /**
@@ -50,7 +51,7 @@ public class Player implements Serializable {
         int enemyLifePoint = enemy.getLifePoint() / 2;
 
         while (enemy.inLife()) {
-            int attackStrength = ClassicMethods.random(0, enemy.getLifePoint());
+            int attackStrength = weapon.getDamage();
             lifePoint -= attackStrength;
 
             if (lifePoint <= 0) break;
@@ -106,6 +107,8 @@ public class Player implements Serializable {
         Console.afficheln("un coffre avec : " + weapon.getName() + " Youpi !");
 
         if (this.weapon != null && weapon.getDamage() > this.weapon.getDamage()) this.weapon = weapon;
+
+        Main.getGame().getCurentRoom().clearChest();
     }
 
     public Position getPosition() {

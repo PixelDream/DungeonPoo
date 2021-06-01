@@ -70,4 +70,8 @@ public class Room implements Serializable {
     public void clearEnemy() {
         this.enemy = null;
     }
+
+    public void clearChest() {
+        this.chest = null;
+    }
 }

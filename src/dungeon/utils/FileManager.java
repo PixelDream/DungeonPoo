@@ -23,8 +23,8 @@ public class FileManager implements Serializable {
     private static List<Weapon> weaponsList;
     private static List<Trap> trapsList;
     private static List<Enemy> enemiesList;
-    private String name_app = "DungeonPoo";
-    final public String path = dataFolder + name_app;
+    private String name_app;
+    final public String path;
 
     /**
      * FileManager constructor
@@ -33,6 +33,7 @@ public class FileManager implements Serializable {
 
     public FileManager(String name_app) {
         this.name_app = name_app;
+        path = dataFolder + name_app;
         writeFolderAppData();
 
         weaponsList = new ArrayList<>();
