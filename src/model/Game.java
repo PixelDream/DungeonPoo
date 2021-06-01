@@ -1,9 +1,7 @@
 package model;
 
 import controller.Main;
-import utils.ClassicMethods;
-import utils.Console;
-import utils.Interaction;
+import utils.*;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -95,13 +93,29 @@ public class Game implements Serializable {
                 Room room = new Room(new Position(x, y));
 
                 if (ClassicMethods.random(0, 10) < luckTrap * 10) {
-                    room.setTrap(new Trap());
+                    RandomCollection<Trap> rc = new RandomCollection<>();
+                    for (Trap trap : FileManager.getTrapsList()) rc.add(trap.getRarety(), trap);
+
+                    Trap trap = rc.next();
+
+                    room.setTrap(trap);
                 }
+
                 if (ClassicMethods.random(0, 10) < luckChest * 10) {
-                    room.setChest(new Chest());
+                    RandomCollection<Weapon> rc = new RandomCollection<>();
+                    for (Weapon weapon : FileManager.getWeaponsList()) rc.add(weapon.getRarety(), weapon);
+
+                    Weapon weapon = rc.next();
+
+                    room.setChest(new Chest(weapon));
                 }
                 if (ClassicMethods.random(0, 10) < luckEnemy * 10) {
-                    room.setEnemy(new Enemy());
+                    RandomCollection<Enemy> rc = new RandomCollection<>();
+                    for (Enemy e : FileManager.getEnemiesList()) rc.add(1, e);
+
+                    Enemy enemy = rc.next();
+
+                    room.setEnemy(enemy);
                 }
 
                 //TODO: numberRoom Use

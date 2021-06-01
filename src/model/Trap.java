@@ -13,20 +13,6 @@ public class Trap implements Serializable {
     private double rarety;
 
     /**
-     * Random trap constructor
-     */
-
-    public Trap() {
-        RandomCollection<Trap> rc = new RandomCollection<>();
-        for (Trap trap : FileManager.getTrapsList()) rc.add(trap.rarety, trap);
-
-        Trap trap = rc.next();
-        this.name = trap.name;
-        this.damage = trap.damage;
-        this.rarety = trap.rarety;
-    }
-
-    /**
      * Trap constructor from xml file
      * @param name Name of the trap
      * @param damage Damage caused to the player
@@ -51,12 +37,4 @@ public class Trap implements Serializable {
         return rarety;
     }
 
-    @Override
-    public String toString() {
-        return "Trap{" +
-                "name='" + name + '\'' +
-                ", damage=" + damage +
-                ", rarety=" + rarety +
-                '}';
-    }
 }

@@ -14,7 +14,6 @@ public class Attack implements Serializable {
      * @param damage Damage caused by the attack
      */
 
-
     public Attack(String name, double damage, double luck) {
         this(name, damage);
         this.luck = luck;
