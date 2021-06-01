@@ -11,10 +11,11 @@ public class Chest implements Serializable {
 
     /**
      * Chest constructor
+     * Generate a chest with a random Weapon inside
      */
 
     public Chest() {
-        weapon = new Weapon();
+        this.weapon = new Weapon();
     }
 
     public Weapon getWeapon() {

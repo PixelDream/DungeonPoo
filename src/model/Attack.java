@@ -6,20 +6,12 @@ public class Attack implements Serializable {
 
     private String name;
     private double damage;
-    private double luck;
 
     /**
      * Attack constructor from xml
-     * @param name
-     * @param damage
-     * @param luck
+     * @param name Attack's name
+     * @param damage Damage caused by the attack
      */
-
-    public Attack(String name, double damage, double luck) {
-        this.name = name;
-        this.damage = damage;
-        this.luck = luck;
-    }
 
     public Attack(String name, double damage) {
         this.name = name;
@@ -32,9 +24,5 @@ public class Attack implements Serializable {
 
     public double getDamage() {
         return damage;
-    }
-
-    public double getLuck() {
-        return luck;
     }
 }

@@ -12,7 +12,7 @@
     <weapon>
         <name>Armagedon</name>
         <type>Epee</type>
-        <damage>12</damage>
+        <damage>20</damage>
         <rarity>0.01</rarity>
     </weapon>
     <weapon>
@@ -25,12 +25,12 @@
         <name>Acide sulfurique</name>
         <type>Poison</type>
         <damage>9</damage>
-        <rarity>0.4</rarity>
+        <rarity>0.3</rarity>
     </weapon>
     <weapon>
         <name>Eau bouillante</name>
         <type>Poison</type>
         <damage>2</damage>
-        <rarity>0.8</rarity>
+        <rarity>0.5</rarity>
     </weapon>
 </weapons>

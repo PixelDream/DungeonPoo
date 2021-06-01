@@ -13,6 +13,10 @@ public class Enemy implements Serializable {
     private int lifePoint;
     private List<Attack> attacks;
 
+    /**
+     * Generate random enemy constructor
+     */
+
     public Enemy() {
         RandomCollection<Enemy> rc = new RandomCollection<>();
         for (Enemy e : FileManager.getEnemiesList()) rc.add(1, e);
@@ -26,8 +30,9 @@ public class Enemy implements Serializable {
 
     /**
      * Enemy constructor
-     * @param name
-     * @param attacks
+     * @param name Name of the enemy
+     * @param lifePoint Lifepoint of the enemy
+     * @param attacks List of enemy's attacks
      */
 
     public Enemy(String name, int lifePoint, List<Attack> attacks) {

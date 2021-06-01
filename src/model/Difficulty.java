@@ -9,10 +9,10 @@ public enum Difficulty implements Serializable {
     DIFFICULT(50, 0.5, 0.55, 0.5),
     HARDCORE(100, 0.3, 0.85, 0.75);
 
-    private int numberRoom;
-    private double luckChest;
-    private double luckEnemy;
-    private double luckTrap;
+    private final int numberRoom;
+    private final double luckChest;
+    private final double luckEnemy;
+    private final double luckTrap;
 
     /**
      * Difficulty constructor

@@ -243,7 +243,7 @@ public class Game implements Serializable {
                     strBuilder.append("| ");
 
                     if (roomList[x][y].isVisited()) {
-                        strBuilder.append("Ok");
+                        strBuilder.append("✓");
                     } else {
                         strBuilder.append("?");
                     }

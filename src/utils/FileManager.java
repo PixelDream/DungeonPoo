@@ -7,7 +7,14 @@ import model.Weapon;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
+import org.xml.sax.ContentHandler;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -18,11 +25,12 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import static javax.script.ScriptEngine.FILENAME;
+
 public class FileManager implements Serializable {
 
     final private String dataFolder = System.getProperty("user.home") + "\\Local Settings\\Application Data\\";
     private static List<Weapon> weaponsList;
-    private static List<Attack> attacksList;
     private static List<Trap> trapsList;
     private static List<Enemy> enemiesList;
     private String name_app = "DungeonPoo";
@@ -38,11 +46,9 @@ public class FileManager implements Serializable {
         writeFolderAppData();
 
         weaponsList = new ArrayList<>();
-        attacksList = new ArrayList<>();
         trapsList = new ArrayList<>();
         enemiesList = new ArrayList<>();
         initWeapon();
-        initAttack();
         initTraps();
         initEnemy();
     }
@@ -97,19 +103,8 @@ public class FileManager implements Serializable {
         }
     }
 
-    /**
-     * Translate all the Attacks in xml to Java Object
-     */
-
-    private void initAttack() {
-
-        Iterator i = getXml("src/fixture/attacks.xml","attack");
-
-        while(i.hasNext()) {
-            Element el = (Element) i.next();
-            Attack attack = new Attack(el.getChild("name").getText(), Integer.parseInt(el.getChild("damage").getText()), Double.parseDouble(el.getChild("luck").getText()));
-            attacksList.add(attack);
-        }
+    public void testXmlMethod(){
+        
     }
 
     /**
@@ -144,9 +139,6 @@ public class FileManager implements Serializable {
             Collections.shuffle(attacksList);
             Enemy enemy = new Enemy(el.getChild("name").getText(), Integer.parseInt(el.getChild("lifepoint").getText()), attacksList);
             enemiesList.add(enemy);
-        }
-        for (Enemy enemy : enemiesList) {
-            enemy.getLifePoint();
         }
     }
 
@@ -190,10 +182,6 @@ public class FileManager implements Serializable {
 
     public static List<Weapon> getWeaponsList() {
         return weaponsList;
-    }
-
-    public static List<Attack> getAttacksList() {
-        return attacksList;
     }
 
     public static List<Trap> getTrapsList() {

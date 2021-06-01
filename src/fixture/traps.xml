@@ -19,13 +19,13 @@
         <rarity>0.1</rarity>
     </trap>
     <trap>
-        <name>bla</name>
-        <damage>1</damage>
+        <name>un nid d'araignées venimeuses</name>
+        <damage>7</damage>
         <rarity>0.2</rarity>
     </trap>
     <trap>
-        <name>dza</name>
-        <damage>2</damage>
-        <rarity>0.1</rarity>
+        <name>une mine antipersonnel</name>
+        <damage>60</damage>
+        <rarity>0.01</rarity>
     </trap>
 </traps>
