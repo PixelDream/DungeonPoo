@@ -1,11 +1,11 @@
-package controller;
+package dungeon;
 
-import model.Difficulty;
-import model.Game;
-import model.Player;
-import utils.Console;
-import utils.FileManager;
-import utils.Interaction;
+import dungeon.model.Difficulty;
+import dungeon.model.Game;
+import dungeon.model.Player;
+import dungeon.utils.Console;
+import dungeon.utils.FileManager;
+import dungeon.utils.Interaction;
 
 import java.io.IOException;
 

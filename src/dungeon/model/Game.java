@@ -1,7 +1,7 @@
-package model;
+package dungeon.model;
 
-import controller.Main;
-import utils.*;
+import dungeon.Main;
+import dungeon.utils.*;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -117,8 +117,6 @@ public class Game implements Serializable {
 
                     room.setEnemy(enemy);
                 }
-
-                //TODO: numberRoom Use
 
                 roomList[x][y] = room;
             }

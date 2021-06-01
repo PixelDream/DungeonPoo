@@ -1,7 +1,4 @@
-package model;
-
-import utils.FileManager;
-import utils.RandomCollection;
+package dungeon.model;
 
 import java.io.Serializable;
 

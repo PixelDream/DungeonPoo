@@ -1,4 +1,4 @@
-package utils;
+package dungeon.utils;
 
 import java.util.NavigableMap;
 import java.util.Random;

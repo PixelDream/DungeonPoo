@@ -1,9 +1,9 @@
-package model;
+package dungeon.model;
 
-import controller.Main;
-import utils.ClassicMethods;
-import utils.Console;
-import utils.Interaction;
+import dungeon.Main;
+import dungeon.utils.ClassicMethods;
+import dungeon.utils.Console;
+import dungeon.utils.Interaction;
 
 import java.io.Serializable;
 

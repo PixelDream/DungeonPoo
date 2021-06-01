@@ -1,4 +1,4 @@
-package utils;
+package dungeon.utils;
 
 import java.util.HashSet;
 import java.util.Scanner;

@@ -1,10 +1,6 @@
-package model;
-
-import utils.FileManager;
-import utils.RandomCollection;
+package dungeon.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Enemy implements Serializable {

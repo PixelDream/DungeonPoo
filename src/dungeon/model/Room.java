@@ -1,4 +1,4 @@
-package model;
+package dungeon.model;
 
 import java.io.Serializable;
 

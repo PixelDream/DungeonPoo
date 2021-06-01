@@ -1,22 +1,14 @@
-package utils;
+package dungeon.utils;
 
-import model.Attack;
-import model.Enemy;
-import model.Trap;
-import model.Weapon;
+import dungeon.model.Attack;
+import dungeon.model.Enemy;
+import dungeon.model.Trap;
+import dungeon.model.Weapon;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
-import org.xml.sax.ContentHandler;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -24,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
-import static javax.script.ScriptEngine.FILENAME;
 
 public class FileManager implements Serializable {
 
@@ -94,7 +84,7 @@ public class FileManager implements Serializable {
 
     private void initWeapon() {
 
-        Iterator i = getXml("src/fixture/weapons.xml", "weapon");
+        Iterator i = getXml("src/dungeon.fixture/weapons.xml", "weapon");
 
         while(i.hasNext()) {
             Element el = (Element) i.next();
@@ -113,7 +103,7 @@ public class FileManager implements Serializable {
 
     private void initTraps() {
 
-        Iterator i = getXml("src/fixture/traps.xml","trap");
+        Iterator i = getXml("src/dungeon.fixture/traps.xml","trap");
 
         while(i.hasNext()) {
             Element el = (Element) i.next();
@@ -128,7 +118,7 @@ public class FileManager implements Serializable {
 
     private void initEnemy() {
 
-        Iterator i = getXml("src/fixture/enemies.xml","enemy");
+        Iterator i = getXml("src/dungeon.fixture/enemies.xml","enemy");
 
         while(i.hasNext()) {
             Element el = (Element) i.next();

@@ -1,4 +1,4 @@
-package utils;
+package dungeon.utils;
 
 public class ClassicMethods {
 
