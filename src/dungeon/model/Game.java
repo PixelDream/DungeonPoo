@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Game implements Serializable {
     private int gameNumber;
@@ -31,6 +32,12 @@ public class Game implements Serializable {
         this.gameSucceed = false;
         this.difficulty = difficulty;
         size = ((int) Math.sqrt(difficulty.getNumberRoom()));
+
+        int x = ClassicMethods.random(0, size);
+        int y = ClassicMethods.random(0, size);
+
+        player.move(x, y, Direction.NONE);
+        roomList[x][y].setVisited(true);
 
         generateDungeon();
         saveGame();
@@ -115,6 +122,7 @@ public class Game implements Serializable {
 
                     room.setChest(new Chest(weapon));
                 }
+
                 if (ClassicMethods.random(0, 10) < luckEnemy * 10) {
                     RandomCollection<Enemy> rc = new RandomCollection<>();
                     for (Enemy e : FileManager.getEnemiesList()) rc.add(1, e);

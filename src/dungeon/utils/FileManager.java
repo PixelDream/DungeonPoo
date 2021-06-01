@@ -84,7 +84,7 @@ public class FileManager implements Serializable {
 
     private void initWeapon() {
 
-        Iterator i = getXml("src/dungeon.fixture/weapons.xml", "weapon");
+        Iterator i = getXml("src/dungeon/fixture/weapons.xml", "weapon");
 
         while(i.hasNext()) {
             Element el = (Element) i.next();
@@ -103,7 +103,7 @@ public class FileManager implements Serializable {
 
     private void initTraps() {
 
-        Iterator i = getXml("src/dungeon.fixture/traps.xml","trap");
+        Iterator i = getXml("src/dungeon/fixture/traps.xml","trap");
 
         while(i.hasNext()) {
             Element el = (Element) i.next();
@@ -118,7 +118,7 @@ public class FileManager implements Serializable {
 
     private void initEnemy() {
 
-        Iterator i = getXml("src/dungeon.fixture/enemies.xml","enemy");
+        Iterator i = getXml("src/dungeon/fixture/enemies.xml","enemy");
 
         while(i.hasNext()) {
             Element el = (Element) i.next();
