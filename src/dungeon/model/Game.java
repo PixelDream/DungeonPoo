@@ -33,15 +33,15 @@ public class Game implements Serializable {
         this.difficulty = difficulty;
         size = ((int) Math.sqrt(difficulty.getNumberRoom()));
 
+        generateDungeon();
+
         int x = ClassicMethods.random(0, size);
         int y = ClassicMethods.random(0, size);
 
         player.move(x, y, Direction.NONE);
         roomList[x][y].setVisited(true);
 
-        generateDungeon();
         saveGame();
-
     }
 
     /**
