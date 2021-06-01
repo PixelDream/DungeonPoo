@@ -21,6 +21,11 @@ public class Attack implements Serializable {
         this.luck = luck;
     }
 
+    public Attack(String name, double damage) {
+        this.name = name;
+        this.damage = damage;
+    }
+
     public String getName() {
         return name;
     }

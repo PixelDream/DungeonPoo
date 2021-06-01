@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE enemies [
         <!ELEMENT enemies (enemy)*>
-        <!ELEMENT enemy (name, attacks)>
+        <!ELEMENT enemy (name, lifepoint, attacks)>
         <!ELEMENT name (#PCDATA)>
+        <!ELEMENT lifepoint (#PCDATA)>
         <!ELEMENT attacks (attack)*>
-        <!ELEMENT attack (#PCDATA)>
+        <!ELEMENT attack (name, damage)>
+        <!ELEMENT damage (#PCDATA)>
 ]>
 
 <!-- TODO: Lenny -->
@@ -18,79 +20,156 @@
 <enemies>
     <enemy>
         <name>Squelette</name>
+        <lifepoint>12</lifepoint>
         <attacks>
-            <attack>Flèche enflammée</attack>
-            <attack>Tibia</attack>
+            <attack>
+                <name>Flèche enflammée</name>
+                <damage>12</damage>
+            </attack>
+            <attack>
+                <name>Tibia</name>
+                <damage>6</damage>
+            </attack>
         </attacks>
     </enemy>
     <enemy>
         <name>Sorcière</name>
+        <lifepoint>20</lifepoint>
         <attacks>
-            <attack>Poison</attack>
-            <attack>Lapin ensorcelé</attack>
+            <attack>
+                <name>Poison</name>
+                <damage>10</damage>
+            </attack>
+            <attack>
+                <name>Lapin ensorcelé</name>
+                <damage>4</damage>
+            </attack>
         </attacks>
     </enemy>
     <enemy>
         <name>Mort vivant</name>
+        <lifepoint>8</lifepoint>
         <attacks>
-            <attack>Bouts de peau</attack>
-            <attack>Crocs</attack>
+            <attack>
+                <name>Bouts de peau</name>
+                <damage>3</damage>
+            </attack>
+            <attack>
+                <name>Crocs</name>
+                <damage>10</damage>
+            </attack>
         </attacks>
     </enemy>
     <enemy>
         <name>Momie</name>
+        <lifepoint>10</lifepoint>
         <attacks>
-            <attack>Bandage</attack>
-            <attack>Gifle</attack>
+            <attack>
+                <name>Bandage</name>
+                <damage>5</damage>
+            </attack>
+            <attack>
+                <name>Gifle</name>
+                <damage>11</damage>
+            </attack>
         </attacks>
     </enemy>
     <enemy>
         <name>Sanglier</name>
+        <lifepoint>18</lifepoint>
         <attacks>
-            <attack>Défenses</attack>
-            <attack>Crocs</attack>
+            <attack>
+                <name>Défenses</name>
+                <damage>15</damage>
+            </attack>
+            <attack>
+                <name>Crocs</name>
+                <damage>10</damage>
+            </attack>
         </attacks>
     </enemy>
     <enemy>
         <name>Dragon</name>
+        <lifepoint>30</lifepoint>
         <attacks>
-            <attack>Feu</attack>
-            <attack>Griffe</attack>
+            <attack>
+                <name>Feu</name>
+                <damage>13</damage>
+            </attack>
+            <attack>
+                <name>Griffe</name>
+                <damage>8</damage>
+            </attack>
         </attacks>
     </enemy>
     <enemy>
         <name>Troll</name>
+        <lifepoint>15</lifepoint>
         <attacks>
-            <attack>Massu</attack>
-            <attack>Poing</attack>
+            <attack>
+                <name>Massu</name>
+                <damage>12</damage>
+            </attack>
+            <attack>
+                <name>Poing</name>
+                <damage>8</damage>
+            </attack>
         </attacks>
     </enemy>
     <enemy>
         <name>Gnome</name>
+        <lifepoint>4</lifepoint>
         <attacks>
-            <attack>Epée</attack>
-            <attack>Genou</attack>
+            <attack>
+                <name>Epée</name>
+                <damage>15</damage>
+            </attack>
+            <attack>
+                <name>Genou</name>
+                <damage>10</damage>
+            </attack>
         </attacks>
     </enemy>
     <enemy>
         <name>Santor</name>
+        <lifepoint>16</lifepoint>
         <attacks>
-            <attack>Epée</attack>
-            <attack>Arc</attack>
+            <attack>
+                <name>Epée</name>
+                <damage>15</damage>
+            </attack>
+            <attack>
+                <name>Arc</name>
+                <damage>9</damage>
+            </attack>
         </attacks>
     </enemy>
     <enemy>
         <name>Fée</name>
+        <lifepoint>8</lifepoint>
         <attacks>
-            <attack>Sortilège</attack>
-            <attack>Baguette</attack>
+            <attack>
+                <name>Sortilège</name>
+                <damage>12</damage>
+            </attack>
+            <attack>
+                <name>Baguette</name>
+                <damage>6</damage>
+            </attack>
         </attacks>
     </enemy>
     <enemy>
         <name>Troupeau de nain</name>
+        <lifepoint>12</lifepoint>
         <attacks>
-            <attack>Pieds</attack>
-            <attack>Poing dans les parties intimes</attack>
+            <attack>
+                <name>Pieds</name>
+                <damage>5</damage>
+            </attack>
+            <attack>
+                <name>Poing dans les parties intimes</name>
+                <damage>17</damage>
+            </attack>
         </attacks>
     </enemy>
 </enemies>

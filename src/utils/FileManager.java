@@ -136,7 +136,11 @@ public class FileManager implements Serializable {
 
         while(i.hasNext()) {
             Element el = (Element) i.next();
-            Enemy enemy = new Enemy(el.getChild("name").getText());
+            List<Attack> attacksList = new ArrayList<>();
+            for (Element attack : el.getChild("attacks").getChildren("attack")) {
+                attacksList.add(new Attack(attack.getChild("name").getText(), Double.parseDouble(attack.getChild("damage").getText())));
+            }
+            Enemy enemy = new Enemy(el.getChild("name").getText(), attacksList);
             enemiesList.add(enemy);
         }
     }

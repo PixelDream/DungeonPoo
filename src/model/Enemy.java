@@ -26,11 +26,13 @@ public class Enemy implements Serializable {
 
     /**
      * Enemy constructor
+     * @param name
+     * @param attacks
      */
 
-
-    public Enemy(String name) {
+    public Enemy(String name, List<Attack> attacks) {
         this.name = name;
+        this.attacks = attacks;
     }
 
     public String getName() {
