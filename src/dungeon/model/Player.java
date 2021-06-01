@@ -62,9 +62,7 @@ public class Player implements Serializable {
         }
 
         if (lifePoint <= 0) {
-            Console.afficheln("Vous n'avez plus de vie");
-            Console.afficheln("Vous avez perdu !");
-            return;
+            Main.getGame().looseGame();
         }
 
         Console.afficheln("Vous avez gagné le combat, vous récupérez une potion de vie (+" + enemyLifePoint + "pv)");
@@ -79,23 +77,23 @@ public class Player implements Serializable {
      */
 
     public boolean fleeTheFight(){
-        boolean isFlee = false;
-
         Console.afficheInLine("Vous voulez fuir le combat (Oui, Non) : ");
         String res = Interaction.lireString();
 
-        switch (res.toLowerCase()) {
-            case "oui" -> isFlee = true;
-            case "non" -> isFlee = false;
-        }
-
-        return isFlee;
+        return res.equalsIgnoreCase("oui");
     }
 
+    /**
+     * Fall in a trap method
+     * @param trap The trap in which the player fall
+     */
+
     public void trapped(Trap trap) {
-        //TODO: Text
         Console.afficheln("Vous êtes tombé dans " + trap.getName());
         lifePoint -= trap.getDamage();
+        if (lifePoint <= 0) {
+            Main.getGame().looseGame();
+        }
     }
 
     /**

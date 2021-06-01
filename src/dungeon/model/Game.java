@@ -65,6 +65,12 @@ public class Game implements Serializable {
         Main.fm().saveObject(this, "game-saved.bin");
     }
 
+    public void looseGame(){
+        Console.afficheln("Vous n'avez plus de vie");
+        Console.afficheln("Vous avez perdu !");
+        System.exit(0);
+    }
+
     /**
      * Show map method
      */
