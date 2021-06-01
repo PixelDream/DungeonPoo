@@ -47,6 +47,8 @@ public class Player implements Serializable {
 
         if (fleeTheFight()) return;
 
+        int enemyLifePoint = enemy.getLifePoint() / 2;
+
         while (enemy.inLife()) {
             int attackStrength = ClassicMethods.random(0, enemy.getLifePoint());
             lifePoint -= attackStrength;
@@ -65,6 +67,9 @@ public class Player implements Serializable {
             return;
         }
 
+        Console.afficheln("Vous avez gagné le combat, vous récupérez une potion de vie (+" + enemyLifePoint + "pv)");
+        lifePoint += enemyLifePoint;
+
         Main.getGame().getCurentRoom().clearEnemy();
     }
 
@@ -75,22 +80,16 @@ public class Player implements Serializable {
 
     public boolean fleeTheFight(){
         boolean isFlee = false;
+
         Console.afficheInLine("Vous voulez fuir le combat (Oui, Non) : ");
         String res = Interaction.lireString();
+
         switch (res.toLowerCase()) {
             case "oui" -> isFlee = true;
             case "non" -> isFlee = false;
         }
 
         return isFlee;
-    }
-
-    /**
-     * Parry an attack method
-     */
-
-    public void parry(){
-        // parer une attaque
     }
 
     public void trapped(Trap trap) {

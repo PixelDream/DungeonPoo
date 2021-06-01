@@ -94,9 +94,15 @@ public class Game implements Serializable {
             for (int y = 0; y < size; y++) {
                 Room room = new Room(new Position(x, y));
 
-                if (ClassicMethods.random(0, 10) < luckTrap * 10) room.setTrap(new Trap());
-                if (ClassicMethods.random(0, 10) < luckChest * 10) room.setChest(new Chest());
-                if (ClassicMethods.random(0, 10) < luckEnemy * 10) room.setEnemy(new Enemy());
+                if (ClassicMethods.random(0, 10) < luckTrap * 10) {
+                    room.setTrap(new Trap());
+                }
+                if (ClassicMethods.random(0, 10) < luckChest * 10) {
+                    room.setChest(new Chest());
+                }
+                if (ClassicMethods.random(0, 10) < luckEnemy * 10) {
+                    room.setEnemy(new Enemy());
+                }
 
                 //TODO: numberRoom Use
 
@@ -191,7 +197,6 @@ public class Game implements Serializable {
         checkEvents();
 
         showMap();
-
         nextRound();
     }
 

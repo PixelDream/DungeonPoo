@@ -13,6 +13,7 @@ public class Enemy implements Serializable {
     private int lifePoint;
     private List<Attack> attacks;
 
+<<<<<<< Updated upstream
     /**
      * Generate random enemy constructor
      */
@@ -28,6 +29,8 @@ public class Enemy implements Serializable {
         this.lifePoint = enemy.lifePoint;;
     }
 
+=======
+>>>>>>> Stashed changes
     /**
      * Enemy constructor
      * @param name Name of the enemy
@@ -39,6 +42,17 @@ public class Enemy implements Serializable {
         this.name = name;
         this.lifePoint = lifePoint;
         this.attacks = attacks;
+    }
+
+    public Enemy() {
+        RandomCollection<Enemy> rc = new RandomCollection<>();
+        for (Enemy e : FileManager.getEnemiesList()) rc.add(1, e);
+
+        Enemy enemy = rc.next();
+
+        this.name = enemy.name;
+        this.lifePoint = enemy.lifePoint;
+        this.attacks = enemy.attacks;
     }
 
     public String getName() {

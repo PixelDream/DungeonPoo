@@ -13,6 +13,14 @@ public class Attack implements Serializable {
      * @param damage Damage caused by the attack
      */
 
+<<<<<<< Updated upstream
+=======
+    public Attack(String name, double damage, double luck) {
+        this(name, damage);
+        this.luck = luck;
+    }
+
+>>>>>>> Stashed changes
     public Attack(String name, double damage) {
         this.name = name;
         this.damage = damage;
