@@ -27,10 +27,10 @@ public class Player implements Serializable {
     }
 
     /**
-     * Change room method //TODO: pour morgan, rempli ca
-     * @param x
-     * @param y
-     * @param direction
+     * Change room method
+     * @param x update x position of the player
+     * @param y update y position of the player
+     * @param direction update the direction of the player
      */
 
     public void move(int x, int y, Direction direction){
