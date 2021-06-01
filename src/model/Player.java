@@ -16,8 +16,8 @@ public class Player implements Serializable {
 
     /**
      * Player constructor
-     * @param username
-     * @param lifePoint
+     * @param username Name of the player
+     * @param lifePoint Initial lifepoint of the player
      */
 
     public Player(String username, int lifePoint) {
@@ -27,7 +27,7 @@ public class Player implements Serializable {
     }
 
     /**
-     * Change room method
+     * Change room method //TODO: pour morgan, rempli ca
      * @param x
      * @param y
      * @param direction
@@ -39,7 +39,7 @@ public class Player implements Serializable {
 
     /**
      * Begin a fight method
-     * @param enemy
+     * @param enemy The enemy the player is gonna fight
      */
 
     public void fight(Enemy enemy){
@@ -70,7 +70,7 @@ public class Player implements Serializable {
 
     /**
      * Flee a fight method
-     * @return
+     * @return If yes or not the player is gonna flee the fight with an enemy
      */
 
     public boolean fleeTheFight(){
@@ -101,7 +101,7 @@ public class Player implements Serializable {
 
     /**
      * Open chest method
-     * @param chest
+     * @param chest The chest which is gonna be open by the player
      */
 
     public void openChest(Chest chest) {

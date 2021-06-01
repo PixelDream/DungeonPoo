@@ -19,7 +19,7 @@ public class RandomCollection<E> {
 
     /**
      * RandomCollection constructor
-     * @param random
+     * @param random Take in entry a random number
      */
 
     public RandomCollection(Random random) {

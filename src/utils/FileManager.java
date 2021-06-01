@@ -38,7 +38,7 @@ public class FileManager implements Serializable {
 
     /**
      * FileManager constructor
-     * @param name_app
+     * @param name_app Name of the folder we gonna create to save data
      */
 
     public FileManager(String name_app) {
@@ -67,9 +67,9 @@ public class FileManager implements Serializable {
 
     /**
      * Fetch XML Data File method
-     * @param xmlPath
-     * @param xmlObjectName
-     * @return
+     * @param xmlPath Path to the xml file
+     * @param xmlObjectName Name of the main tag
+     * @return Iterator which can be used to read data from xml file
      */
 
     private Iterator getXml(String xmlPath, String xmlObjectName){
@@ -144,8 +144,8 @@ public class FileManager implements Serializable {
 
     /**
      * Save Java object to file by Serialization method
-     * @param obj
-     * @param nomFichier
+     * @param obj Object to save
+     * @param nomFichier File's name we want
      */
 
     public void saveObject(Object obj, String nomFichier) {
@@ -162,9 +162,9 @@ public class FileManager implements Serializable {
 
     /**
      * Get Serialize object from file into Java method
-     * @param nomFichier
-     * @return
-     * @throws IOException
+     * @param nomFichier File to open
+     * @return Object store in that file
+     * @throws IOException Because we read a file
      */
 
     public Object openSavedObject(String nomFichier) throws IOException {

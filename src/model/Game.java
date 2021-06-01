@@ -22,8 +22,8 @@ public class Game implements Serializable {
     /**
      * Game constructor
      *
-     * @param player
-     * @param difficulty
+     * @param player Player of the game
+     * @param difficulty Difficulty choose by the player
      */
 
     public Game(Player player, Difficulty difficulty) {
@@ -43,7 +43,7 @@ public class Game implements Serializable {
      * Open saved game from file methode
      *
      * @return saved Game
-     * @throws IOException
+     * @throws IOException Because we open a file
      */
 
     public static Game openGame() throws IOException {

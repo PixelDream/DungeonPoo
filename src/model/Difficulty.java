@@ -16,10 +16,10 @@ public enum Difficulty implements Serializable {
 
     /**
      * Difficulty constructor
-     * @param numberRoom
-     * @param luckChest
-     * @param luckEnemy
-     * @param luckTrap
+     * @param numberRoom Number of room in this difficulty
+     * @param luckChest Luck to get a chest in a room
+     * @param luckEnemy Luck to get an enemy in a room
+     * @param luckTrap Luck to get a trap in a room
      */
 
     Difficulty(int numberRoom, double luckChest, double luckEnemy, double luckTrap) {

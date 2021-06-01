@@ -11,7 +11,7 @@ public class Interaction {
 
     /**
      * Read user entry method
-     * @return
+     * @return User entry
      */
 
     public static String lireString() {
@@ -20,7 +20,7 @@ public class Interaction {
 
     /**
      * Sleep for 1 second method
-     * @param sec
+     * @param sec The time we want to wait
      */
 
     public static void pause(int sec) {

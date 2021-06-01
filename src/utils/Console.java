@@ -4,7 +4,7 @@ public class Console {
 
     /**
      * Show info in console method
-     * @param s
+     * @param s A string
      */
 
     public static void info(String s) {
@@ -13,7 +13,7 @@ public class Console {
 
     /**
      * One line console print method
-     * @param s
+     * @param s A string
      */
 
     public static void afficheInLine(String s) {
@@ -22,7 +22,7 @@ public class Console {
 
     /**
      * Show text in console with 1 second interval method
-     * @param s
+     * @param s A string
      */
 
     public static void affiche(String s) {
@@ -32,7 +32,7 @@ public class Console {
 
     /**
      * Show to the line text in console method
-     * @param s
+     * @param s A string
      */
 
     public static void afficheln(String s) {

@@ -30,17 +30,17 @@ public class Weapon implements Serializable {
 
     /**
      * Weapon constructor from xml file
-     * @param name
-     * @param type
-     * @param damage
-     * @param rarety
+     * @param name Name of the weapon
+     * @param type Type of the weapon
+     * @param damage Damage caused by the weapon
+     * @param rarity Chance to got this weapon
      */
 
-    public Weapon(String name, String type, int damage, double rarety) {
+    public Weapon(String name, String type, int damage, double rarity) {
         this.name = name;
         this.type = type;
         this.damage = damage;
-        this.rarety = rarety;
+        this.rarety = rarity;
     }
 
     public String getName() {
