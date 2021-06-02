@@ -46,7 +46,7 @@ public class Player implements Serializable {
     public void fight(Enemy enemy){
         Console.afficheln(enemy.getName() + " vous attaque ! (" + enemy.getLifePoint() + "pv)");
 
-        if (fleeTheFight()) return;
+        if (fleeTheFight() && !Main.getGame().isGameSucceed()) return;
 
         int enemyLifePoint = enemy.getLifePoint() / 2;
 
@@ -95,6 +95,8 @@ public class Player implements Serializable {
         if (lifePoint <= 0) {
             Main.getGame().looseGame();
         }
+
+        Main.getGame().getCurentRoom().clearTrap();
     }
 
     /**
@@ -106,7 +108,13 @@ public class Player implements Serializable {
         Weapon weapon = chest.getWeapon();
         Console.afficheln("un coffre avec : " + weapon.getName() + " Youpi !");
 
-        if (this.weapon != null && weapon.getDamage() > this.weapon.getDamage()) this.weapon = weapon;
+
+        if (this.weapon != null && weapon.getDamage() > this.weapon.getDamage()) {
+            this.weapon = weapon;
+            Console.afficheln("Vous avez une nouvelle arme " + weapon);
+        } else {
+            Console.afficheln("Cette arme est nulle. Jetons-la par terre.");
+        }
 
         Main.getGame().getCurentRoom().clearChest();
     }

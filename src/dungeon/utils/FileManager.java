@@ -23,6 +23,7 @@ public class FileManager implements Serializable {
     private static List<Weapon> weaponsList;
     private static List<Trap> trapsList;
     private static List<Enemy> enemiesList;
+    private static List<Attack> listAttacks;
     private String name_app;
     final public String path;
 
@@ -34,11 +35,14 @@ public class FileManager implements Serializable {
     public FileManager(String name_app) {
         this.name_app = name_app;
         path = dataFolder + name_app;
+
         writeFolderAppData();
 
         weaponsList = new ArrayList<>();
         trapsList = new ArrayList<>();
         enemiesList = new ArrayList<>();
+        listAttacks = new ArrayList<>();
+
         initWeapon();
         initTraps();
         initEnemy();
@@ -124,10 +128,14 @@ public class FileManager implements Serializable {
         while(i.hasNext()) {
             Element el = (Element) i.next();
             List<Attack> attacksList = new ArrayList<>();
+
             for (Element attack : el.getChild("attacks").getChildren("attack")) {
                 attacksList.add(new Attack(attack.getChild("name").getText(), Double.parseDouble(attack.getChild("damage").getText())));
             }
+
             Collections.shuffle(attacksList);
+            listAttacks.addAll(attacksList);
+
             Enemy enemy = new Enemy(el.getChild("name").getText(), Integer.parseInt(el.getChild("lifepoint").getText()), attacksList);
             enemiesList.add(enemy);
         }
@@ -143,9 +151,10 @@ public class FileManager implements Serializable {
         try {
             FileOutputStream file = new FileOutputStream(path + "/" + nomFichier);
             ObjectOutputStream object = new ObjectOutputStream(file);
-            object.writeObject(obj);
-            object.close();
 
+            object.writeObject(obj);
+
+            object.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -160,6 +169,7 @@ public class FileManager implements Serializable {
 
     public Object openSavedObject(String nomFichier) throws IOException {
         Object o = null;
+
         try (ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(path + "/" + nomFichier))) {
             o = objectInput.readObject();
         } catch (EOFException eof) {
@@ -181,5 +191,9 @@ public class FileManager implements Serializable {
 
     public static List<Enemy> getEnemiesList() {
         return enemiesList;
+    }
+
+    public static List<Attack> getListAttacks() {
+        return listAttacks;
     }
 }

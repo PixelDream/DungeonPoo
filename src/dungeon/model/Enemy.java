@@ -38,4 +38,8 @@ public class Enemy implements Serializable {
         this.lifePoint -= lifePoint;
         if (!inLife()) this.lifePoint = 0;
     }
+
+    public List<Attack> getAttacks() {
+        return attacks;
+    }
 }

@@ -5,9 +5,9 @@ import dungeon.utils.*;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Game implements Serializable {
     private int gameNumber;
@@ -35,13 +35,11 @@ public class Game implements Serializable {
 
         generateDungeon();
 
-        int x = ClassicMethods.random(0, size);
-        int y = ClassicMethods.random(0, size);
+        int x = ClassicMethods.random(0, size - 1);
+        int y = ClassicMethods.random(0, size - 1);
 
         player.move(x, y, Direction.NONE);
         roomList[x][y].setVisited(true);
-
-        saveGame();
     }
 
     /**
@@ -60,6 +58,7 @@ public class Game implements Serializable {
      */
 
     public void launchGame() {
+        this.saveGame();
         showMap();
         nextRound();
     }
@@ -75,6 +74,11 @@ public class Game implements Serializable {
     public void looseGame(){
         Console.afficheln("Vous n'avez plus de vie");
         Console.afficheln("Vous avez perdu !");
+        System.exit(0);
+    }
+
+    public void winGame(){
+        Console.afficheln("Vous avez gagné le jeu !");
         System.exit(0);
     }
 
@@ -145,7 +149,6 @@ public class Game implements Serializable {
     public void nextRound() {
         Console.afficheln("Ou voulez-vous allez ?");
 
-        // C'est dans le sens oppossé
         List<Integer> possibleMoves = new ArrayList<>();
 
         if (player.getPosition().getX() - 1 < size && player.getPosition().getX() - 1 >= 0) {
@@ -185,8 +188,10 @@ public class Game implements Serializable {
         }
 
         Console.affiche("Quel est votre choix: ");
+
         String ligne = Interaction.lireString();
         int choix = -1;
+
         try {
             choix = Integer.parseInt(ligne);
         } catch (NumberFormatException e) {
@@ -218,13 +223,36 @@ public class Game implements Serializable {
 
         if (getCurentRoom().getTrap() != null) Console.info("Un piège: " + getCurentRoom().getTrap().getName());
 
-        this.saveGame();
-
         checkEvents();
 
-        showMap();
-        nextRound();
+        checkEndGame();
+
+        if (!gameSucceed) launchGame();
     }
+
+    private void checkEndGame() {
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
+                if(roomList[x][y].isVisited()) {
+                    gameSucceed = false;
+                    return;
+                }
+            }
+        }
+
+        fightBoss();
+    }
+
+    private void fightBoss() {
+        int lifePoint = ClassicMethods.random(70, 80);
+
+        Enemy boss = new Enemy("Boss", lifePoint, FileManager.getListAttacks());
+
+        getCurentRoom().setEnemy(boss);
+
+        checkEvents();
+    }
+
 
     /**
      * Check if there's any enemy/chest in the actual room method
@@ -287,5 +315,9 @@ public class Game implements Serializable {
         }
 
         return strBuilder.toString();
+    }
+
+    public boolean isGameSucceed() {
+        return gameSucceed;
     }
 }

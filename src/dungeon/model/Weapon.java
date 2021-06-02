@@ -59,5 +59,8 @@ public class Weapon implements Serializable {
         return rarety;
     }
 
-
+    @Override
+    public String toString() {
+        return "( name='" + name + ", type='" + type + ", damage=" + damage + ", rarety=" + rarety + ')';
+    }
 }
