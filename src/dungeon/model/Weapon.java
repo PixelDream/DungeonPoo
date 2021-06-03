@@ -58,6 +58,6 @@ public class Weapon implements Serializable {
 
     @Override
     public String toString() {
-        return "(nom='" + name + ", type='" + type + ", dommage=" + damage + ", rareté=" + rarety + ')';
+        return "(nom: " + name + ", type: " + type + ", dommage: " + damage + ", rareté: " + rarety + ')';
     }
 }
