@@ -23,16 +23,17 @@ public class Main {
         try {
             game = Game.openGame();
 
-            Console.afficheInLine("Voulez-vous reprendre une partie : (O/N) ");
-            String res = Interaction.lireString();
+            if (!game.isGameSucceed()) {
+                Console.afficheInLine("Voulez-vous reprendre une partie : (O/N) ");
+                String res = Interaction.lireString();
 
-            if (res.equalsIgnoreCase("Oui") || res.equalsIgnoreCase("O")) {
-                Console.afficheln("Bonjour " + game.getPlayer().getUsername() + " !");
-                game.launchGame();
-            } else {
-                newGame();
+                if (res.equalsIgnoreCase("Oui") || res.equalsIgnoreCase("O")) {
+                    Console.afficheln("Bonjour " + game.getPlayer().getUsername() + " !");
+                    game.launchGame();
+                } else {
+                    newGame();
+                }
             }
-
         } catch (IOException e) {
             newGame();
         }

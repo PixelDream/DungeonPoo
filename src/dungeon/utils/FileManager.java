@@ -25,7 +25,6 @@ public class FileManager implements Serializable {
     private static List<Attack> listAttacks;
     final public String path;
     final private String dataFolder = System.getProperty("user.home") + "\\Local Settings\\Application Data\\";
-    private final String name_app;
 
     /**
      * FileManager constructor
@@ -34,7 +33,6 @@ public class FileManager implements Serializable {
      */
 
     public FileManager(String name_app) {
-        this.name_app = name_app;
         path = dataFolder + name_app;
 
         writeFolderAppData();

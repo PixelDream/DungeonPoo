@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game implements Serializable {
-    private int gameNumber;
     private int score;
     private boolean gameSucceed;
     private Player player;
@@ -26,7 +25,6 @@ public class Game implements Serializable {
 
     public Game(Player player, Difficulty difficulty) {
         this.player = player;
-        this.gameNumber = 0;
         this.score = 0;
         this.gameSucceed = false;
         this.difficulty = difficulty;
@@ -47,6 +45,16 @@ public class Game implements Serializable {
     }
 
     /**
+     * Launch game method
+     */
+
+    public void launchGame() {
+        this.saveGame();
+        showMap();
+        nextRound();
+    }
+
+    /**
      * Open saved game from file methode
      *
      * @return saved Game
@@ -55,16 +63,6 @@ public class Game implements Serializable {
 
     public static Game openGame() throws IOException {
         return (Game) Main.fm().openSavedObject("game-saved.bin");
-    }
-
-    /**
-     * Launch game method
-     */
-
-    public void launchGame() {
-        this.saveGame();
-        showMap();
-        nextRound();
     }
 
     /**
@@ -82,7 +80,7 @@ public class Game implements Serializable {
     }
 
     public void winGame() {
-        Console.afficheln("Vous avez gagné le jeu !");
+        Console.afficheln("Vous avez gagné le jeu ! Super !");
         System.exit(0);
     }
 
@@ -253,6 +251,8 @@ public class Game implements Serializable {
         getCurentRoom().setEnemy(boss);
 
         checkEvents();
+
+        winGame();
     }
 
 
