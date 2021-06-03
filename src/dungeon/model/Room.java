@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class Room implements Serializable {
 
-    private Position position;
     private Chest chest;
     private Enemy enemy;
     private Trap trap;
@@ -12,20 +11,14 @@ public class Room implements Serializable {
 
     /**
      * Room constructor
-     *
-     * @param position The position of the room
      */
 
-    public Room(Position position) {
-        this.position = position;
+    public Room() {
+        super();
     }
 
     public boolean hasChest() {
         return chest != null;
-    }
-
-    public Position getPosition() {
-        return position;
     }
 
     public Chest getChest() {

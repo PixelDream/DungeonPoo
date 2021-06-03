@@ -14,7 +14,6 @@ class dungeon.model.Trap {
 + double getRarety()
 }
 class dungeon.model.Game {
-- int score
 - boolean gameSucceed
 - int size
 + void launchGame()
@@ -28,8 +27,6 @@ class dungeon.model.Game {
 - void checkEndGame()
 - void fightBoss()
 - void checkEvents()
-+ int getScore()
-+ void setScore(int)
 + Room getCurentRoom()
 + String toString()
 + boolean isGameSucceed()

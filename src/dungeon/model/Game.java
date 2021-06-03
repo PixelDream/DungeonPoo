@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game implements Serializable {
-    private int score;
     private boolean gameSucceed;
     private Player player;
     private Difficulty difficulty;
@@ -25,7 +24,6 @@ public class Game implements Serializable {
 
     public Game(Player player, Difficulty difficulty) {
         this.player = player;
-        this.score = 0;
         this.gameSucceed = false;
         this.difficulty = difficulty;
         size = ((int) Math.sqrt(difficulty.getNumberRoom()));
@@ -108,7 +106,7 @@ public class Game implements Serializable {
         // Génération des pièces
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
-                Room room = new Room(new Position(x, y));
+                Room room = new Room();
 
                 if (ClassicMethods.random(0, 10) < luckTrap * 10) {
                     RandomCollection<Trap> rc = new RandomCollection<>();
@@ -268,13 +266,6 @@ public class Game implements Serializable {
         if (room.hasTrap()) player.trapped(room.getTrap());
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
 
     public Room getCurentRoom() {
         return roomList[player.getPosition().getX()][player.getPosition().getY()];
