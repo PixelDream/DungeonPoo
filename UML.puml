@@ -1,0 +1,196 @@
+@startuml
+class dungeon.model.Attack {
+- String name
+- int damage
++ String getName()
++ int getDamage()
+}
+class dungeon.model.Trap {
+- String name
+- int damage
+- double rarety
++ String getName()
++ int getDamage()
++ double getRarety()
+}
+class dungeon.model.Game {
+- int score
+- boolean gameSucceed
+- int size
++ void launchGame()
++ {static} Game openGame()
++ void saveGame()
++ void looseGame()
++ void winGame()
++ void showMap()
+- void generateDungeon()
++ void nextRound()
+- void checkEndGame()
+- void fightBoss()
+- void checkEvents()
++ int getScore()
++ void setScore(int)
++ Room getCurentRoom()
++ String toString()
++ boolean isGameSucceed()
++ Player getPlayer()
+}
+class dungeon.model.Room {
+- boolean visited
++ boolean hasChest()
++ Position getPosition()
++ Chest getChest()
++ void setChest(Chest)
++ boolean hasEnemy()
++ Enemy getEnemy()
++ void setEnemy(Enemy)
++ boolean hasTrap()
++ Trap getTrap()
++ void setTrap(Trap)
++ boolean isVisited()
++ void setVisited(boolean)
++ void clearEnemy()
++ void clearChest()
++ void clearTrap()
+}
+class dungeon.utils.Console {
++ {static} void info(String)
++ {static} void afficheInLine(String)
++ {static} void affiche(String)
++ {static} void afficheln(String)
++ {static} void afficherNomJeu()
+}
+class dungeon.model.Player {
+- String username
+- int lifePoint
++ void move(int,int,Direction)
++ void fight(Enemy)
++ boolean fleeTheFight()
++ void trapped(Trap)
++ void openChest(Chest)
++ Position getPosition()
++ String getUsername()
+}
+class dungeon.utils.RandomCollection {
+- NavigableMap<Double,E> map
+- Random random
+- double total
++ RandomCollection<E> add(double,E)
++ E next()
+}
+class dungeon.model.Weapon {
+- String name
+- String type
+- int damage
+- double rarety
++ String getName()
++ int getDamage()
++ double getRarety()
++ String toString()
+}
+class dungeon.Main {
++ {static} void main(String[])
++ {static} void newGame()
++ {static} FileManager fm()
++ {static} Game getGame()
+}
+class dungeon.utils.ClassicMethods {
++ {static} int random(int,int)
+}
+class dungeon.model.Enemy {
+- String name
+- int lifePoint
++ String getName()
++ boolean inLife()
++ int getLifePoint()
++ void removeLifePoint(int)
++ Attack getAttack()
+}
+class dungeon.model.Position {
++ {static} int MAX_XY
+- int x
++ void updateCoords(int,int,Direction)
++ int getX()
++ int getY()
++ Direction getDirection()
+}
+class dungeon.utils.FileManager {
+- {static} List<Weapon> weaponsList
+- {static} List<Trap> trapsList
+- {static} List<Enemy> enemiesList
+- {static} List<Attack> listAttacks
++ String path
+- String dataFolder
++ {static} List<Weapon> getWeaponsList()
++ {static} List<Trap> getTrapsList()
++ {static} List<Enemy> getEnemiesList()
++ {static} List<Attack> getListAttacks()
++ void writeFolderAppData()
+- Iterator getXml(String,String)
+- void initWeapon()
++ void testXmlMethod()
+- void initTraps()
+- void initEnemy()
++ void saveObject(Object,String)
++ Object openSavedObject(String)
+}
+class dungeon.utils.Interaction {
+- {static} Scanner entree
++ {static} String lireString()
++ {static} void pause(int)
+}
+class dungeon.model.Chest {
++ Weapon getWeapon()
+}
+enum dungeon.model.Difficulty {
+EASY
+NORMAL
+DIFFICULT
+HARDCORE
+- int numberRoom
+- double luckChest
+- double luckEnemy
+- double luckTrap
+
++ int getNumberRoom()
++ double getLuckChest()
++ double getLuckEnemy()
++ double getLuckTrap()
+}
+enum dungeon.model.Direction {
+NONE
+WEST
+EAST
+NORTH
+SOUTH
+}
+
+
+dungeon.model.Game "1" *--> "1" dungeon.model.Player : player
+dungeon.model.Game "1" *--> "1" dungeon.model.Difficulty : difficulty
+dungeon.model.Game "1" *--> "*" dungeon.model.Room : roomList
+
+dungeon.model.Room "1" *--> "1" dungeon.model.Position : position
+dungeon.model.Room "1" *--> "1" dungeon.model.Chest : chest
+dungeon.model.Room "1" o--> "1" dungeon.model.Enemy : enemy
+dungeon.model.Room "1" o--> "1" dungeon.model.Trap : trap
+
+dungeon.model.Player "1" *--> "1" dungeon.model.Position : position
+dungeon.model.Player "1" *--> "1" dungeon.model.Weapon : weapon
+
+dungeon.Main "1" *--> "1" dungeon.model.Game : game
+dungeon.Main "1" *--> "1" dungeon.utils.FileManager : fm
+
+dungeon.model.Enemy "1" o--> "*" dungeon.model.Attack: attacks
+
+dungeon.model.Position "1" *--> "*" dungeon.model.Direction : direction
+
+dungeon.model.Chest "1" o--> "*" dungeon.model.Weapon : weapon
+
+dungeon.utils.FileManager "1" *--> "*" dungeon.model.Weapon : weaponsList
+dungeon.utils.FileManager "1" *--> "*" dungeon.model.Attack : listAttacks
+dungeon.utils.FileManager "1" *--> "*" dungeon.model.Enemy : enemiesList
+dungeon.utils.FileManager "1" *--> "*" dungeon.model.Trap : trapsList
+
+
+@enduml

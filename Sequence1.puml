@@ -1,0 +1,122 @@
+@startuml
+participant Actor
+Actor -> Game : generateDungeon
+activate Game
+Game -> Difficulty : getLuckChest
+activate Difficulty
+Difficulty --> Game
+deactivate Difficulty
+Game -> Difficulty : getLuckTrap
+activate Difficulty
+Difficulty --> Game
+deactivate Difficulty
+Game -> Difficulty : getLuckEnemy
+activate Difficulty
+Difficulty --> Game
+deactivate Difficulty
+Game -> Position : new
+activate Position
+Position --> Game
+deactivate Position
+Game -> Room : new
+activate Room
+Room --> Game
+deactivate Room
+Game -> ClassicMethods : random
+activate ClassicMethods
+ClassicMethods --> Game
+deactivate ClassicMethods
+Game -> RandomCollection : new
+activate RandomCollection
+RandomCollection -> RandomCollection : new
+activate RandomCollection
+RandomCollection --> RandomCollection
+deactivate RandomCollection
+RandomCollection --> Game
+deactivate RandomCollection
+Game -> FileManager : getTrapsList
+activate FileManager
+FileManager --> Game
+deactivate FileManager
+Game -> Trap : getRarety
+activate Trap
+Trap --> Game
+deactivate Trap
+Game -> RandomCollection : add
+activate RandomCollection
+RandomCollection --> Game
+deactivate RandomCollection
+Game -> RandomCollection : next
+activate RandomCollection
+RandomCollection --> Game
+deactivate RandomCollection
+Game -> Room : setTrap
+activate Room
+Room --> Game
+deactivate Room
+Game -> ClassicMethods : random
+activate ClassicMethods
+ClassicMethods --> Game
+deactivate ClassicMethods
+Game -> RandomCollection : new
+activate RandomCollection
+RandomCollection -> RandomCollection : new
+activate RandomCollection
+RandomCollection --> RandomCollection
+deactivate RandomCollection
+RandomCollection --> Game
+deactivate RandomCollection
+Game -> FileManager : getWeaponsList
+activate FileManager
+FileManager --> Game
+deactivate FileManager
+Game -> Weapon : getRarety
+activate Weapon
+Weapon --> Game
+deactivate Weapon
+Game -> RandomCollection : add
+activate RandomCollection
+RandomCollection --> Game
+deactivate RandomCollection
+Game -> RandomCollection : next
+activate RandomCollection
+RandomCollection --> Game
+deactivate RandomCollection
+Game -> Chest : new
+activate Chest
+Chest --> Game
+deactivate Chest
+Game -> Room : setChest
+activate Room
+Room --> Game
+deactivate Room
+Game -> ClassicMethods : random
+activate ClassicMethods
+ClassicMethods --> Game
+deactivate ClassicMethods
+Game -> RandomCollection : new
+activate RandomCollection
+RandomCollection -> RandomCollection : new
+activate RandomCollection
+RandomCollection --> RandomCollection
+deactivate RandomCollection
+RandomCollection --> Game
+deactivate RandomCollection
+Game -> FileManager : getEnemiesList
+activate FileManager
+FileManager --> Game
+deactivate FileManager
+Game -> RandomCollection : add
+activate RandomCollection
+RandomCollection --> Game
+deactivate RandomCollection
+Game -> RandomCollection : next
+activate RandomCollection
+RandomCollection --> Game
+deactivate RandomCollection
+Game -> Room : setEnemy
+activate Room
+Room --> Game
+deactivate Room
+return
+@enduml
