@@ -56,7 +56,7 @@ public class Player implements Serializable {
         while (enemy.inLife()) {
             Attack attack = enemy.getAttack();
 
-            Console.affiche("[" + enemy.getName() + "] Attaque" + attack.getName() + "(" + attack.getDamage() + "pv)");
+            Console.affiche("[" + enemy.getName() + "] Attaque " + attack.getName() + "(" + attack.getDamage() + "pv)");
 
             int attackStrength = attack.getDamage();
             lifePoint -= attackStrength;

@@ -244,7 +244,7 @@ public class Game implements Serializable {
     private void fightBoss() {
         gameSucceed = true;
 
-        int lifePoint = ClassicMethods.random(70, 80);
+        int lifePoint = ClassicMethods.random(60, 80);
 
         Enemy boss = new Enemy("Boss", lifePoint, FileManager.getListAttacks());
 
