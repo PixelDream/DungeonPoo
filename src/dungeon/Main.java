@@ -52,7 +52,6 @@ public class Main {
 
             switch (diff.toLowerCase()) {
                 case "facile" -> difficulty = Difficulty.EASY;
-                case "normal" -> difficulty = Difficulty.NORMAL;
                 case "difficile" -> difficulty = Difficulty.DIFFICULT;
                 case "hardcore" -> difficulty = Difficulty.HARDCORE;
                 default -> difficulty = Difficulty.NORMAL;
