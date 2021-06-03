@@ -57,7 +57,7 @@ public class Main {
                 case "hardcore" -> difficulty = Difficulty.HARDCORE;
                 default -> difficulty = Difficulty.NORMAL;
             }
-            
+
         }
 
 

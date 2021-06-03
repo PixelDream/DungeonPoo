@@ -38,7 +38,12 @@ public class Game implements Serializable {
         int y = ClassicMethods.random(0, size - 1);
 
         player.move(x, y, Direction.NONE);
-        roomList[x][y].setVisited(true);
+        Room room = roomList[x][y];
+
+        room.setVisited(true);
+        room.clearChest();
+        room.clearEnemy();
+        room.clearTrap();
     }
 
     /**
@@ -94,7 +99,6 @@ public class Game implements Serializable {
      */
 
     private void generateDungeon() {
-        int numberRoom = difficulty.getNumberRoom();
         double luckChest = difficulty.getLuckChest();
         double luckTrap = difficulty.getLuckTrap();
         double luckEnemy = difficulty.getLuckEnemy();
