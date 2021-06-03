@@ -1,6 +1,7 @@
 package dungeon.model;
 
 import dungeon.Main;
+import dungeon.utils.ClassicMethods;
 import dungeon.utils.Console;
 import dungeon.utils.Interaction;
 
@@ -62,6 +63,9 @@ public class Player implements Serializable {
 
             if (lifePoint <= 0) break;
 
+            Console.affiche("[" + username + "] Attaque" + weapon.getName() + "(" + weapon.getDamage() + "pv)");
+
+
             attackStrength = weapon.getDamage();
             enemy.removeLifePoint(attackStrength);
 
@@ -72,10 +76,12 @@ public class Player implements Serializable {
             Main.getGame().looseGame();
         }
 
-        lifePoint += enemyLifePoint;
+        if (ClassicMethods.random(0, 3) == 3) {
+            lifePoint += enemyLifePoint;
 
-        Console.affiche("Vous avez gagné le combat, vous récupérez une potion de vie (+" + enemyLifePoint + "pv)");
-        Console.afficheln("Vous avez " + lifePoint + "pv");
+            Console.affiche("Vous avez gagné le combat, vous récupérez une potion de vie (+" + enemyLifePoint + "pv)");
+            Console.afficheln("Vous avez " + lifePoint + "pv");
+        }
 
         Main.getGame().getCurentRoom().clearEnemy();
     }
