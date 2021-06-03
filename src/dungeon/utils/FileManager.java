@@ -19,16 +19,17 @@ import java.util.List;
 
 public class FileManager implements Serializable {
 
-    final private String dataFolder = System.getProperty("user.home") + "\\Local Settings\\Application Data\\";
     private static List<Weapon> weaponsList;
     private static List<Trap> trapsList;
     private static List<Enemy> enemiesList;
     private static List<Attack> listAttacks;
-    private String name_app;
     final public String path;
+    final private String dataFolder = System.getProperty("user.home") + "\\Local Settings\\Application Data\\";
+    private final String name_app;
 
     /**
      * FileManager constructor
+     *
      * @param name_app Name of the folder we gonna create to save data
      */
 
@@ -48,6 +49,22 @@ public class FileManager implements Serializable {
         initEnemy();
     }
 
+    public static List<Weapon> getWeaponsList() {
+        return weaponsList;
+    }
+
+    public static List<Trap> getTrapsList() {
+        return trapsList;
+    }
+
+    public static List<Enemy> getEnemiesList() {
+        return enemiesList;
+    }
+
+    public static List<Attack> getListAttacks() {
+        return listAttacks;
+    }
+
     /**
      * Create game folder method
      */
@@ -62,18 +79,19 @@ public class FileManager implements Serializable {
 
     /**
      * Fetch XML Data File method
-     * @param xmlPath Path to the xml file
+     *
+     * @param xmlPath       Path to the xml file
      * @param xmlObjectName Name of the main tag
      * @return Iterator which can be used to read data from xml file
      */
 
-    private Iterator getXml(String xmlPath, String xmlObjectName){
+    private Iterator getXml(String xmlPath, String xmlObjectName) {
         Document document = null;
         Element racine;
         SAXBuilder sxb = new SAXBuilder();
         try {
             document = sxb.build(new InputStreamReader(new FileInputStream(xmlPath), StandardCharsets.UTF_8));
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         racine = document.getRootElement();
@@ -91,15 +109,15 @@ public class FileManager implements Serializable {
 
         Iterator i = getXml("src/dungeon/fixture/weapons.xml", "weapon");
 
-        while(i.hasNext()) {
+        while (i.hasNext()) {
             Element el = (Element) i.next();
             Weapon weapon = new Weapon(el.getChild("name").getText(), el.getChild("type").getText(), Integer.parseInt(el.getChild("damage").getText()), Double.parseDouble(el.getChild("rarity").getText()));
             weaponsList.add(weapon);
         }
     }
 
-    public void testXmlMethod(){
-        
+    public void testXmlMethod() {
+
     }
 
     /**
@@ -108,9 +126,9 @@ public class FileManager implements Serializable {
 
     private void initTraps() {
 
-        Iterator i = getXml("src/dungeon/fixture/traps.xml","trap");
+        Iterator i = getXml("src/dungeon/fixture/traps.xml", "trap");
 
-        while(i.hasNext()) {
+        while (i.hasNext()) {
             Element el = (Element) i.next();
             Trap trap = new Trap(el.getChild("name").getText(), Integer.parseInt(el.getChild("damage").getText()), Double.parseDouble(el.getChild("rarity").getText()));
             trapsList.add(trap);
@@ -123,14 +141,14 @@ public class FileManager implements Serializable {
 
     private void initEnemy() {
 
-        Iterator i = getXml("src/dungeon/fixture/enemies.xml","enemy");
+        Iterator i = getXml("src/dungeon/fixture/enemies.xml", "enemy");
 
-        while(i.hasNext()) {
+        while (i.hasNext()) {
             Element el = (Element) i.next();
             List<Attack> attacksList = new ArrayList<>();
 
             for (Element attack : el.getChild("attacks").getChildren("attack")) {
-                attacksList.add(new Attack(attack.getChild("name").getText(), Double.parseDouble(attack.getChild("damage").getText())));
+                attacksList.add(new Attack(attack.getChild("name").getText(), Integer.parseInt(attack.getChild("damage").getText())));
             }
 
             Collections.shuffle(attacksList);
@@ -143,7 +161,8 @@ public class FileManager implements Serializable {
 
     /**
      * Save Java object to file by Serialization method
-     * @param obj Object to save
+     *
+     * @param obj        Object to save
      * @param nomFichier File's name we want
      */
 
@@ -162,6 +181,7 @@ public class FileManager implements Serializable {
 
     /**
      * Get Serialize object from file into Java method
+     *
      * @param nomFichier File to open
      * @return Object store in that file
      * @throws IOException Because we read a file
@@ -179,21 +199,5 @@ public class FileManager implements Serializable {
         }
 
         return o;
-    }
-
-    public static List<Weapon> getWeaponsList() {
-        return weaponsList;
-    }
-
-    public static List<Trap> getTrapsList() {
-        return trapsList;
-    }
-
-    public static List<Enemy> getEnemiesList() {
-        return enemiesList;
-    }
-
-    public static List<Attack> getListAttacks() {
-        return listAttacks;
     }
 }

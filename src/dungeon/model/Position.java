@@ -3,13 +3,13 @@ package dungeon.model;
 import java.io.Serializable;
 
 public class Position implements Serializable {
+    public static int MAX_XY = -1;
     private int x, y;
     private Direction direction;
 
-    public static int MAX_XY = -1;
-
     /**
      * Position constructor
+     *
      * @param x
      * @param y
      */
@@ -21,17 +21,8 @@ public class Position implements Serializable {
     }
 
     /**
-     * Check if a position is (x,y) method
-     * @param x
-     * @param y
-     * @return
-     */
-    public boolean equals(int x, int y) {
-        return this.x == x && this.y == y;
-    }
-
-    /**
      * Change position's coordinate method
+     *
      * @param x
      * @param y
      * @param direction

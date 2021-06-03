@@ -30,8 +30,9 @@ public class Weapon implements Serializable {
 
     /**
      * Weapon constructor from xml file
-     * @param name Name of the weapon
-     * @param type Type of the weapon
+     *
+     * @param name   Name of the weapon
+     * @param type   Type of the weapon
      * @param damage Damage caused by the weapon
      * @param rarity Chance to got this weapon
      */
@@ -47,10 +48,6 @@ public class Weapon implements Serializable {
         return name;
     }
 
-    public String getType() {
-        return type;
-    }
-
     public int getDamage() {
         return damage;
     }
@@ -61,6 +58,6 @@ public class Weapon implements Serializable {
 
     @Override
     public String toString() {
-        return "( name='" + name + ", type='" + type + ", damage=" + damage + ", rarety=" + rarety + ')';
+        return "(nom='" + name + ", type='" + type + ", dommage=" + damage + ", rareté=" + rarety + ')';
     }
 }

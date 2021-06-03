@@ -9,6 +9,7 @@ public class Chest implements Serializable {
     /**
      * Chest constructor
      * Generate a chest with a random Weapon inside
+     *
      * @param weapon
      */
 

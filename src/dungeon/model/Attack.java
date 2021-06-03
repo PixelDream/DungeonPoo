@@ -5,21 +5,16 @@ import java.io.Serializable;
 public class Attack implements Serializable {
 
     private String name;
-    private double damage;
-    private double luck;
+    private int damage;
 
     /**
      * Attack constructor from xml
-     * @param name Attack's name
+     *
+     * @param name   Attack's name
      * @param damage Damage caused by the attack
      */
 
-    public Attack(String name, double damage, double luck) {
-        this(name, damage);
-        this.luck = luck;
-    }
-
-    public Attack(String name, double damage) {
+    public Attack(String name, int damage) {
         this.name = name;
         this.damage = damage;
     }
@@ -28,7 +23,7 @@ public class Attack implements Serializable {
         return name;
     }
 
-    public double getDamage() {
+    public int getDamage() {
         return damage;
     }
 }

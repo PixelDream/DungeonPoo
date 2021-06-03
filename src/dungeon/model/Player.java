@@ -1,7 +1,6 @@
 package dungeon.model;
 
 import dungeon.Main;
-import dungeon.utils.ClassicMethods;
 import dungeon.utils.Console;
 import dungeon.utils.Interaction;
 
@@ -16,7 +15,8 @@ public class Player implements Serializable {
 
     /**
      * Player constructor
-     * @param username Name of the player
+     *
+     * @param username  Name of the player
      * @param lifePoint Initial lifepoint of the player
      */
 
@@ -24,39 +24,45 @@ public class Player implements Serializable {
         this.username = username;
         this.lifePoint = lifePoint;
         this.position = new Position(0, 0);
-        this.weapon = new Weapon("Coup de poing","Poing",10,0);
+        this.weapon = new Weapon("Coup de poing", "Poing", 5, 0);
     }
 
     /**
      * Change room method
-     * @param x update x position of the player
-     * @param y update y position of the player
+     *
+     * @param x         update x position of the player
+     * @param y         update y position of the player
      * @param direction update the direction of the player
      */
 
-    public void move(int x, int y, Direction direction){
+    public void move(int x, int y, Direction direction) {
         position.updateCoords(x, y, direction);
     }
 
     /**
      * Begin a fight method
+     *
      * @param enemy The enemy the player is gonna fight
      */
 
-    public void fight(Enemy enemy){
+    public void fight(Enemy enemy) {
         Console.afficheln(enemy.getName() + " vous attaque ! (" + enemy.getLifePoint() + "pv)");
 
-        if (fleeTheFight() && !Main.getGame().isGameSucceed()) return;
+        if (!Main.getGame().isGameSucceed() && fleeTheFight()) return;
 
         int enemyLifePoint = enemy.getLifePoint() / 2;
 
         while (enemy.inLife()) {
-            int attackStrength = weapon.getDamage();
+            Attack attack = enemy.getAttack();
+
+            Console.affiche("[" + enemy.getName() + "] Attaque" + attack.getName() + "(" + attack.getDamage() + "pv)");
+
+            int attackStrength = attack.getDamage();
             lifePoint -= attackStrength;
 
             if (lifePoint <= 0) break;
 
-            attackStrength = ClassicMethods.random(0, enemy.getLifePoint());
+            attackStrength = weapon.getDamage();
             enemy.removeLifePoint(attackStrength);
 
             Console.afficheln("Vous avez " + lifePoint + "pv et l'ennemie a " + enemy.getLifePoint() + "pv");
@@ -66,18 +72,21 @@ public class Player implements Serializable {
             Main.getGame().looseGame();
         }
 
-        Console.afficheln("Vous avez gagné le combat, vous récupérez une potion de vie (+" + enemyLifePoint + "pv)");
         lifePoint += enemyLifePoint;
+
+        Console.affiche("Vous avez gagné le combat, vous récupérez une potion de vie (+" + enemyLifePoint + "pv)");
+        Console.afficheln("Vous avez " + lifePoint + "pv");
 
         Main.getGame().getCurentRoom().clearEnemy();
     }
 
     /**
      * Flee a fight method
+     *
      * @return If yes or not the player is gonna flee the fight with an enemy
      */
 
-    public boolean fleeTheFight(){
+    public boolean fleeTheFight() {
         Console.afficheInLine("Vous voulez fuir le combat (Oui, Non) : ");
         String res = Interaction.lireString();
 
@@ -86,12 +95,17 @@ public class Player implements Serializable {
 
     /**
      * Fall in a trap method
+     *
      * @param trap The trap in which the player fall
      */
 
     public void trapped(Trap trap) {
-        Console.afficheln("Vous êtes tombé dans " + trap.getName());
+        Console.afficheln("Vous êtes tombé dans " + trap.getName() + "(-" + trap.getDamage() + "pv)");
+
         lifePoint -= trap.getDamage();
+
+        Console.affiche("Vous avez " + lifePoint + "pv");
+
         if (lifePoint <= 0) {
             Main.getGame().looseGame();
         }
@@ -101,6 +115,7 @@ public class Player implements Serializable {
 
     /**
      * Open chest method
+     *
      * @param chest The chest which is gonna be open by the player
      */
 
@@ -113,7 +128,7 @@ public class Player implements Serializable {
             this.weapon = weapon;
             Console.afficheln("Vous avez une nouvelle arme " + weapon);
         } else {
-            Console.afficheln("Cette arme est nulle. Jetons-la par terre.");
+            Console.affiche("Cette arme est nulle. Jetons-la par terre.");
         }
 
         Main.getGame().getCurentRoom().clearChest();
@@ -123,4 +138,7 @@ public class Player implements Serializable {
         return position;
     }
 
+    public String getUsername() {
+        return username;
+    }
 }

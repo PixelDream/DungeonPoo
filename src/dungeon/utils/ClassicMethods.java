@@ -4,6 +4,7 @@ public class ClassicMethods {
 
     /**
      * Random number generator
+     *
      * @param min Minimum number
      * @param max Maxilum number
      * @return A random number between the min and the max

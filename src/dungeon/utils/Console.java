@@ -4,6 +4,7 @@ public class Console {
 
     /**
      * Show info in console method
+     *
      * @param s A string
      */
 
@@ -13,6 +14,7 @@ public class Console {
 
     /**
      * One line console print method
+     *
      * @param s A string
      */
 
@@ -21,17 +23,19 @@ public class Console {
     }
 
     /**
-     * Show text in console with 1 second interval method
+     * Show text in console with 2 second interval method
+     *
      * @param s A string
      */
 
     public static void affiche(String s) {
         System.out.println(s);
-        Interaction.pause(1);
+        Interaction.pause(2);
     }
 
     /**
      * Show to the line text in console method
+     *
      * @param s A string
      */
 

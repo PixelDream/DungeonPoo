@@ -10,7 +10,8 @@ public class Trap implements Serializable {
 
     /**
      * Trap constructor from xml file
-     * @param name Name of the trap
+     *
+     * @param name   Name of the trap
      * @param damage Damage caused to the player
      * @param rarity Chance to got this trap
      */

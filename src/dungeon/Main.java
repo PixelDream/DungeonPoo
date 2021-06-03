@@ -17,6 +17,8 @@ public class Main {
         fm = new FileManager("DungeonPoo");
 
         Console.afficherNomJeu();
+        Console.afficheln("La partie est automatiquement sauvegardé, vous pouvez reprendre à tout moment.");
+
 
         try {
             game = Game.openGame();
@@ -25,6 +27,7 @@ public class Main {
             String res = Interaction.lireString();
 
             if (res.equalsIgnoreCase("Oui") || res.equalsIgnoreCase("O")) {
+                Console.afficheln("Bonjour " + game.getPlayer().getUsername() + " !");
                 game.launchGame();
             } else {
                 newGame();
@@ -39,7 +42,7 @@ public class Main {
         Console.afficheInLine("Quel est votre nom : ");
         String nom = Interaction.lireString();
 
-        Player player = new Player(nom, 100);
+        Player player = new Player(nom, 150);
 
         Difficulty difficulty = null;
 
@@ -53,7 +56,8 @@ public class Main {
                 case "difficile" -> difficulty = Difficulty.DIFFICULT;
                 case "hardcore" -> difficulty = Difficulty.HARDCORE;
                 default -> difficulty = Difficulty.NORMAL;
-            };
+            }
+            
         }
 
 

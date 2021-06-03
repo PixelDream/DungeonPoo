@@ -5,7 +5,7 @@
         <!ELEMENT name (#PCDATA)>
         <!ELEMENT damage (#PCDATA)>
         <!ELEMENT rarity (#PCDATA)>
-]>
+        ]>
 
 <traps>
     <trap>

@@ -6,7 +6,7 @@
         <!ELEMENT type (#PCDATA)>
         <!ELEMENT damage (#PCDATA)>
         <!ELEMENT rarity (#PCDATA)>
-]>
+        ]>
 
 <weapons>
     <weapon>
@@ -30,7 +30,7 @@
     <weapon>
         <name>Eau bouillante</name>
         <type>Poison</type>
-        <damage>2</damage>
+        <damage>6</damage>
         <rarity>0.5</rarity>
     </weapon>
 </weapons>

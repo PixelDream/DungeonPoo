@@ -7,7 +7,7 @@
         <!ELEMENT attacks (attack)*>
         <!ELEMENT attack (name, damage)>
         <!ELEMENT damage (#PCDATA)>
-]>
+        ]>
 
 <enemies>
     <enemy>

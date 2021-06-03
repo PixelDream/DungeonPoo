@@ -1,6 +1,7 @@
 package dungeon.model;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 public class Enemy implements Serializable {
@@ -11,9 +12,10 @@ public class Enemy implements Serializable {
 
     /**
      * Enemy constructor
-     * @param name Name of the enemy
+     *
+     * @param name      Name of the enemy
      * @param lifePoint Lifepoint of the enemy
-     * @param attacks List of enemy's attacks
+     * @param attacks   List of enemy's attacks
      */
 
     public Enemy(String name, int lifePoint, List<Attack> attacks) {
@@ -39,7 +41,8 @@ public class Enemy implements Serializable {
         if (!inLife()) this.lifePoint = 0;
     }
 
-    public List<Attack> getAttacks() {
-        return attacks;
+    public Attack getAttack() {
+        Collections.shuffle(attacks);
+        return attacks.get(0);
     }
 }

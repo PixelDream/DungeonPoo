@@ -12,6 +12,7 @@ public class Room implements Serializable {
 
     /**
      * Room constructor
+     *
      * @param position The position of the room
      */
 

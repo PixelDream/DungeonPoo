@@ -19,6 +19,7 @@ public class RandomCollection<E> {
 
     /**
      * RandomCollection constructor
+     *
      * @param random Take in entry a random number
      */
 

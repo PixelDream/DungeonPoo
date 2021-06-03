@@ -5,9 +5,8 @@ import dungeon.utils.*;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game implements Serializable {
     private int gameNumber;
@@ -21,7 +20,7 @@ public class Game implements Serializable {
     /**
      * Game constructor
      *
-     * @param player Player of the game
+     * @param player     Player of the game
      * @param difficulty Difficulty choose by the player
      */
 
@@ -71,13 +70,13 @@ public class Game implements Serializable {
         Main.fm().saveObject(this, "game-saved.bin");
     }
 
-    public void looseGame(){
+    public void looseGame() {
         Console.afficheln("Vous n'avez plus de vie");
         Console.afficheln("Vous avez perdu !");
         System.exit(0);
     }
 
-    public void winGame(){
+    public void winGame() {
         Console.afficheln("Vous avez gagné le jeu !");
         System.exit(0);
     }
@@ -187,7 +186,7 @@ public class Game implements Serializable {
             }
         }
 
-        Console.affiche("Quel est votre choix: ");
+        Console.afficheInLine("\nQuel est votre choix: ");
 
         String ligne = Interaction.lireString();
         int choix = -1;
@@ -199,7 +198,7 @@ public class Game implements Serializable {
         }
 
         while (!possibleMoves.contains(choix)) {
-            Console.affiche("Quel est votre choix: ");
+            Console.afficheInLine("\nQuel est votre choix: ");
             ligne = Interaction.lireString();
             try {
                 choix = Integer.parseInt(ligne);
@@ -221,8 +220,6 @@ public class Game implements Serializable {
 
         getCurentRoom().setVisited(true);
 
-        if (getCurentRoom().getTrap() != null) Console.info("Un piège: " + getCurentRoom().getTrap().getName());
-
         checkEvents();
 
         checkEndGame();
@@ -233,8 +230,7 @@ public class Game implements Serializable {
     private void checkEndGame() {
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
-                if(roomList[x][y].isVisited()) {
-                    gameSucceed = false;
+                if (!roomList[x][y].isVisited()) {
                     return;
                 }
             }
@@ -244,6 +240,8 @@ public class Game implements Serializable {
     }
 
     private void fightBoss() {
+        gameSucceed = true;
+
         int lifePoint = ClassicMethods.random(70, 80);
 
         Enemy boss = new Enemy("Boss", lifePoint, FileManager.getListAttacks());
@@ -319,5 +317,9 @@ public class Game implements Serializable {
 
     public boolean isGameSucceed() {
         return gameSucceed;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }
