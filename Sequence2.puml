@@ -14,22 +14,6 @@ Console --> Console
 deactivate Console
 Console --> Player
 deactivate Console
-Player -> Enemy : getName
-activate Enemy
-Enemy --> Player
-deactivate Enemy
-Player -> Enemy : getLifePoint
-activate Enemy
-Enemy --> Player
-deactivate Enemy
-Player -> Main : getGame
-activate Main
-Main --> Player
-deactivate Main
-Player -> Game : isGameSucceed
-activate Game
-Game --> Player
-deactivate Game
 Player -> Player : fleeTheFight
 activate Player
 Player -> Console : afficheInLine
@@ -42,18 +26,10 @@ Interaction --> Player
 deactivate Interaction
 Player --> Player
 deactivate Player
-Player -> Enemy : getLifePoint
-activate Enemy
-Enemy --> Player
-deactivate Enemy
 Player -> Enemy : inLife
 activate Enemy
 Enemy --> Player
 deactivate Enemy
-Player -> Enemy : getAttack
-activate Enemy
-Enemy --> Player
-deactivate Enemy
 Player -> Console : affiche
 activate Console
 Console -> Interaction : pause
@@ -62,22 +38,6 @@ Interaction --> Console
 deactivate Interaction
 Console --> Player
 deactivate Console
-Player -> Enemy : getName
-activate Enemy
-Enemy --> Player
-deactivate Enemy
-Player -> Attack : getName
-activate Attack
-Attack --> Player
-deactivate Attack
-Player -> Attack : getDamage
-activate Attack
-Attack --> Player
-deactivate Attack
-Player -> Attack : getDamage
-activate Attack
-Attack --> Player
-deactivate Attack
 Player -> Console : affiche
 activate Console
 Console -> Interaction : pause
@@ -86,18 +46,6 @@ Interaction --> Console
 deactivate Interaction
 Console --> Player
 deactivate Console
-Player -> Weapon : getName
-activate Weapon
-Weapon --> Player
-deactivate Weapon
-Player -> Weapon : getDamage
-activate Weapon
-Weapon --> Player
-deactivate Weapon
-Player -> Weapon : getDamage
-activate Weapon
-Weapon --> Player
-deactivate Weapon
 Player -> Enemy : removeLifePoint
 activate Enemy
 Enemy -> Enemy : inLife
@@ -118,14 +66,6 @@ Console --> Console
 deactivate Console
 Console --> Player
 deactivate Console
-Player -> Enemy : getLifePoint
-activate Enemy
-Enemy --> Player
-deactivate Enemy
-Player -> Main : getGame
-activate Main
-Main --> Player
-deactivate Main
 Player -> Game : looseGame
 activate Game
 Game -> Console : afficheln
@@ -178,30 +118,6 @@ Console --> Console
 deactivate Console
 Console --> Player
 deactivate Console
-Player -> Main : getGame
-activate Main
-Main --> Player
-deactivate Main
-Player -> Game : getCurentRoom
-activate Game
-Game -> Player : getPosition
-activate Player
-Player --> Game
-deactivate Player
-Game -> Position : getX
-activate Position
-Position --> Game
-deactivate Position
-Game -> Player : getPosition
-activate Player
-Player --> Game
-deactivate Player
-Game -> Position : getY
-activate Position
-Position --> Game
-deactivate Position
-Game --> Player
-deactivate Game
 Player -> Room : clearEnemy
 activate Room
 Room --> Player

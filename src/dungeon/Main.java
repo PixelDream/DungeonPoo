@@ -17,7 +17,7 @@ public class Main {
         fm = new FileManager("DungeonPoo");
 
         Console.afficherNomJeu();
-        Console.afficheln("La partie est automatiquement sauvegardé, vous pouvez reprendre à tout moment.");
+        Console.afficheln("La partie est automatiquement sauvegarde, vous pouvez reprendre à tout moment.");
 
 
         try {
@@ -48,7 +48,7 @@ public class Main {
         Difficulty difficulty = null;
 
         while (difficulty == null) {
-            Console.afficheInLine("Quel est la difficulté (Facile, Normal, Difficile, Hardcore) : ");
+            Console.afficheInLine("Quel est la difficulte (Facile, Normal, Difficile, Hardcore) : ");
             String diff = Interaction.lireString();
 
             switch (diff.toLowerCase()) {

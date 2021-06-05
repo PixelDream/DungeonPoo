@@ -78,7 +78,7 @@ public class Game implements Serializable {
     }
 
     public void winGame() {
-        Console.afficheln("Vous avez gagné le jeu ! Super !");
+        Console.afficheln("Vous avez gagne le jeu ! Super !");
         System.exit(0);
     }
 
@@ -103,7 +103,7 @@ public class Game implements Serializable {
         Position.MAX_XY = size;
         roomList = new Room[size][size];
 
-        // Génération des pièces
+        // Generation des pieces
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
                 Room room = new Room();
@@ -153,7 +153,7 @@ public class Game implements Serializable {
         if (player.getPosition().getX() - 1 < size && player.getPosition().getX() - 1 >= 0) {
             possibleMoves.add(1);
             if (player.getPosition().getDirection().equals(Direction.SOUTH)) {
-                Console.info("1 - North (En arrière)");
+                Console.info("1 - North (En arriere)");
             } else {
                 Console.info("1 - North");
             }
@@ -162,7 +162,7 @@ public class Game implements Serializable {
         if (player.getPosition().getX() + 1 < size && player.getPosition().getX() + 1 >= 0) {
             possibleMoves.add(2);
             if (player.getPosition().getDirection().equals(Direction.NORTH)) {
-                Console.info("2 - South (En arrière)");
+                Console.info("2 - South (En arriere)");
             } else {
                 Console.info("2 - South");
             }
@@ -171,7 +171,7 @@ public class Game implements Serializable {
         if (player.getPosition().getY() - 1 < size && player.getPosition().getY() - 1 >= 0) {
             possibleMoves.add(3);
             if (player.getPosition().getDirection().equals(Direction.WEST)) {
-                Console.info("3 - West (En arrière)");
+                Console.info("3 - West (En arriere)");
             } else {
                 Console.info("3 - West");
             }
@@ -180,7 +180,7 @@ public class Game implements Serializable {
         if (player.getPosition().getY() + 1 < size && player.getPosition().getY() + 1 >= 0) {
             possibleMoves.add(4);
             if (player.getPosition().getDirection().equals(Direction.EAST)) {
-                Console.info("4 - East (En arrière)");
+                Console.info("4 - East (En arriere)");
             } else {
                 Console.info("4 - East");
             }
@@ -283,11 +283,11 @@ public class Game implements Serializable {
                     strBuilder.append("| ");
 
                     switch (pos.getDirection()) {
-                        case NORTH -> strBuilder.append("▲");
-                        case EAST -> strBuilder.append("◀");
-                        case SOUTH -> strBuilder.append("▼");
-                        case WEST -> strBuilder.append("▶");
-                        default -> strBuilder.append("⭕");
+                        case NORTH -> strBuilder.append("N");
+                        case EAST -> strBuilder.append("E");
+                        case SOUTH -> strBuilder.append("S");
+                        case WEST -> strBuilder.append("W");
+                        default -> strBuilder.append("J");
                     }
 
                     strBuilder.append(" |  ");
@@ -295,7 +295,7 @@ public class Game implements Serializable {
                     strBuilder.append("| ");
 
                     if (roomList[x][y].isVisited()) {
-                        strBuilder.append("✓");
+                        strBuilder.append("V");
                     } else {
                         strBuilder.append("?");
                     }

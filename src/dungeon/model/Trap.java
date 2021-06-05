@@ -6,7 +6,7 @@ public class Trap implements Serializable {
 
     private String name;
     private int damage;
-    private double rarety;
+    private double rarity;
 
     /**
      * Trap constructor from xml file
@@ -19,7 +19,7 @@ public class Trap implements Serializable {
     public Trap(String name, int damage, double rarity) {
         this.name = name;
         this.damage = damage;
-        this.rarety = rarity;
+        this.rarity = rarity;
     }
 
     public String getName() {
@@ -31,7 +31,7 @@ public class Trap implements Serializable {
     }
 
     public double getRarety() {
-        return rarety;
+        return rarity;
     }
 
 }

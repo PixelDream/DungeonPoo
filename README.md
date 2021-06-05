@@ -1,6 +1,6 @@
 # Projet POO - Donjon-RPG
 
-* Concevoir et développer un projet complet selon la logique orientée-objet
+* Concevoir et developper un projet complet selon la logique orientee-objet
 * Savoir utiliser les diagrammes utiles pour concevoir et documenter le projet
 * Comprendre les relations entre COO et POO
 

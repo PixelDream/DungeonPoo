@@ -9,13 +9,11 @@ import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 
 import java.io.*;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class FileManager implements Serializable {
 
@@ -78,20 +76,21 @@ public class FileManager implements Serializable {
     /**
      * Fetch XML Data File method
      *
-     * @param xmlPath       Path to the xml file
+     * @param url       Path to the xml file
      * @param xmlObjectName Name of the main tag
      * @return Iterator which can be used to read data from xml file
      */
 
-    private Iterator getXml(String xmlPath, String xmlObjectName) {
+    private Iterator getXml(String url, String xmlObjectName) {
         Document document = null;
         Element racine;
         SAXBuilder sxb = new SAXBuilder();
         try {
-            document = sxb.build(new InputStreamReader(new FileInputStream(xmlPath), StandardCharsets.UTF_8));
+            document = sxb.build(new InputStreamReader(new FileInputStream(url), StandardCharsets.UTF_8));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
         racine = document.getRootElement();
 
         List list = racine.getChildren(xmlObjectName);
@@ -105,16 +104,13 @@ public class FileManager implements Serializable {
 
     private void initWeapon() {
 
-        Iterator i = getXml("src/dungeon/fixture/weapons.xml", "weapon");
+        Iterator i = getXml("./config/weapons.xml", "weapon");
 
         while (i.hasNext()) {
             Element el = (Element) i.next();
             Weapon weapon = new Weapon(el.getChild("name").getText(), el.getChild("type").getText(), Integer.parseInt(el.getChild("damage").getText()), Double.parseDouble(el.getChild("rarity").getText()));
             weaponsList.add(weapon);
         }
-    }
-
-    public void testXmlMethod() {
 
     }
 
@@ -123,14 +119,14 @@ public class FileManager implements Serializable {
      */
 
     private void initTraps() {
-
-        Iterator i = getXml("src/dungeon/fixture/traps.xml", "trap");
+        Iterator i = getXml("./config/traps.xml", "trap");
 
         while (i.hasNext()) {
             Element el = (Element) i.next();
             Trap trap = new Trap(el.getChild("name").getText(), Integer.parseInt(el.getChild("damage").getText()), Double.parseDouble(el.getChild("rarity").getText()));
             trapsList.add(trap);
         }
+
     }
 
     /**
@@ -138,8 +134,7 @@ public class FileManager implements Serializable {
      */
 
     private void initEnemy() {
-
-        Iterator i = getXml("src/dungeon/fixture/enemies.xml", "enemy");
+        Iterator i = getXml("./config/enemies.xml", "enemy");
 
         while (i.hasNext()) {
             Element el = (Element) i.next();
@@ -155,6 +150,7 @@ public class FileManager implements Serializable {
             Enemy enemy = new Enemy(el.getChild("name").getText(), Integer.parseInt(el.getChild("lifepoint").getText()), attacksList);
             enemiesList.add(enemy);
         }
+
     }
 
     /**
@@ -198,4 +194,5 @@ public class FileManager implements Serializable {
 
         return o;
     }
+
 }

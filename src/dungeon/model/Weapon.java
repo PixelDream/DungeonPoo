@@ -10,7 +10,7 @@ public class Weapon implements Serializable {
     private String name;
     private String type;
     private int damage;
-    private double rarety;
+    private double rarity;
 
     /**
      * Random weapon constructor
@@ -18,14 +18,14 @@ public class Weapon implements Serializable {
 
     public Weapon() {
         RandomCollection<Weapon> rc = new RandomCollection<>();
-        for (Weapon weapon : FileManager.getWeaponsList()) rc.add(weapon.rarety, weapon);
+        for (Weapon weapon : FileManager.getWeaponsList()) rc.add(weapon.rarity, weapon);
 
         Weapon weapon = rc.next();
 
         this.name = weapon.name;
         this.type = weapon.type;
         this.damage = weapon.damage;
-        this.rarety = weapon.rarety;
+        this.rarity = weapon.rarity;
     }
 
     /**
@@ -41,7 +41,7 @@ public class Weapon implements Serializable {
         this.name = name;
         this.type = type;
         this.damage = damage;
-        this.rarety = rarity;
+        this.rarity = rarity;
     }
 
     public String getName() {
@@ -53,11 +53,11 @@ public class Weapon implements Serializable {
     }
 
     public double getRarety() {
-        return rarety;
+        return rarity;
     }
 
     @Override
     public String toString() {
-        return "(nom: " + name + ", type: " + type + ", dommage: " + damage + ", rareté: " + rarety + ')';
+        return "(nom: " + name + ", type: " + type + ", dommage: " + damage + ", rarete: " + rarity + ')';
     }
 }

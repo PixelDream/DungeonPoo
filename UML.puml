@@ -8,7 +8,7 @@ class dungeon.model.Attack {
 class dungeon.model.Trap {
 - String name
 - int damage
-- double rarety
+- double rarity
 + String getName()
 + int getDamage()
 + double getRarety()
@@ -79,7 +79,7 @@ class dungeon.model.Weapon {
 - String name
 - String type
 - int damage
-- double rarety
+- double rarity
 + String getName()
 + int getDamage()
 + double getRarety()
@@ -163,31 +163,31 @@ SOUTH
 }
 
 
-dungeon.model.Game "1" *--> "1" dungeon.model.Player : player
-dungeon.model.Game "1" *--> "1" dungeon.model.Difficulty : difficulty
-dungeon.model.Game "1" *--> "*" dungeon.model.Room : roomList
+dungeon.model.Game "1" *--> "1" dungeon.model.Player : - player
+dungeon.model.Game "1" *--> "1" dungeon.model.Difficulty : - difficulty
+dungeon.model.Game "1" *--> "*" dungeon.model.Room : -roomList
 
-dungeon.model.Room "1" *--> "1" dungeon.model.Position : position
-dungeon.model.Room "1" *--> "1" dungeon.model.Chest : chest
-dungeon.model.Room "1" o--> "1" dungeon.model.Enemy : enemy
-dungeon.model.Room "1" o--> "1" dungeon.model.Trap : trap
+dungeon.model.Room "1" *--> "1" dungeon.model.Position : -position
+dungeon.model.Room "1" *--> "1" dungeon.model.Chest : -chest
+dungeon.model.Room "1" o--> "1" dungeon.model.Enemy : -enemy
+dungeon.model.Room "1" o--> "1" dungeon.model.Trap : -trap
 
-dungeon.model.Player "1" *--> "1" dungeon.model.Position : position
-dungeon.model.Player "1" *--> "1" dungeon.model.Weapon : weapon
+dungeon.model.Player "1" *--> "1" dungeon.model.Position : - position
+dungeon.model.Player "1" *--> "1" dungeon.model.Weapon : - weapon
 
-dungeon.Main "1" *--> "1" dungeon.model.Game : game
-dungeon.Main "1" *--> "1" dungeon.utils.FileManager : fm
+dungeon.Main "1" *--> "1" dungeon.model.Game : + game
+dungeon.Main "1" *--> "1" dungeon.utils.FileManager : + fm
 
-dungeon.model.Enemy "1" o--> "*" dungeon.model.Attack: attacks
+dungeon.model.Enemy "1" o--> "*" dungeon.model.Attack: - attacks
 
-dungeon.model.Position "1" *--> "*" dungeon.model.Direction : direction
+dungeon.model.Position "1" *--> "*" dungeon.model.Direction : - direction
 
-dungeon.model.Chest "1" o--> "*" dungeon.model.Weapon : weapon
+dungeon.model.Chest "1" o--> "*" dungeon.model.Weapon : - weapon
 
-dungeon.utils.FileManager "1" *--> "*" dungeon.model.Weapon : weaponsList
-dungeon.utils.FileManager "1" *--> "*" dungeon.model.Attack : listAttacks
-dungeon.utils.FileManager "1" *--> "*" dungeon.model.Enemy : enemiesList
-dungeon.utils.FileManager "1" *--> "*" dungeon.model.Trap : trapsList
+dungeon.utils.FileManager "1" *--> "*" dungeon.model.Weapon : + weaponsList
+dungeon.utils.FileManager "1" *--> "*" dungeon.model.Attack : + listAttacks
+dungeon.utils.FileManager "1" *--> "*" dungeon.model.Enemy : + enemiesList
+dungeon.utils.FileManager "1" *--> "*" dungeon.model.Trap : + trapsList
 
 
 @enduml

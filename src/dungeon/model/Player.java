@@ -79,7 +79,7 @@ public class Player implements Serializable {
         if (ClassicMethods.random(0, 3) == 3) {
             lifePoint += enemyLifePoint;
 
-            Console.affiche("Vous avez gagné le combat, vous récupérez une potion de vie (+" + enemyLifePoint + "pv)");
+            Console.affiche("Vous avez gagne le combat, vous recuperez une potion de vie (+" + enemyLifePoint + "pv)");
             Console.afficheln("Vous avez " + lifePoint + "pv");
         }
 
@@ -106,7 +106,7 @@ public class Player implements Serializable {
      */
 
     public void trapped(Trap trap) {
-        Console.afficheln("Vous êtes tombé dans " + trap.getName() + "(-" + trap.getDamage() + "pv)");
+        Console.afficheln("Vous etes tombe dans " + trap.getName() + "(-" + trap.getDamage() + "pv)");
 
         lifePoint -= trap.getDamage();
 
